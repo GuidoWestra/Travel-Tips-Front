@@ -1,9 +1,15 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../store/user/selectors";
 export default function Account() {
+  const user = useSelector(selectUser);
+  console.log("User on Account Page!", user);
+  useEffect(() => {
+    console.log("render");
+  }, []);
   return (
     <div>
-      <p>I am Account page</p>
+      <p>Hi there! {user.name}</p>
     </div>
   );
 }
