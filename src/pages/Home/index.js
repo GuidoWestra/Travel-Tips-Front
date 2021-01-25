@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
-
+import PlaceCard from "../../components/PlaceCard";
 export default function Home() {
   const [place, setPlace] = useState("");
 
@@ -10,17 +10,15 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div style={{ alignItems: "center" }}>
       <Jumbotron>
         <h1>HomePage</h1>
       </Jumbotron>
       <InputGroup className="mb-3">
         <FormControl
-          style={{ width: 100 }}
           onChange={(event) => setPlace(event.target.value)}
           value={place}
           placeholder="Place"
-          aria-describedby="basic-addon2"
         />
         <InputGroup.Append>
           <Button onClick={() => onClickHandler()} variant="outline-dark">
@@ -28,6 +26,7 @@ export default function Home() {
           </Button>
         </InputGroup.Append>
       </InputGroup>
+      {place === "Amsterdam" ? <PlaceCard props={place} /> : null}
     </div>
   );
 }
