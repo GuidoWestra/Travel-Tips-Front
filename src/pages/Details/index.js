@@ -10,19 +10,24 @@ export default function Details() {
   const dispatch = useDispatch();
   const data = useSelector(selectTipsForPlace);
   console.log(`i am inside of a component, from selector`, data);
-  const placeId = 1;
+
+  const sortedTips = [...data].sort((a, b) => {
+    return b.id - a.id;
+  });
+
+  const placeId = 1; //should come from a route
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
   }, [dispatch]);
   return (
     <div>
       <h3>I am the details page</h3>
-      {data
-        ? data.map((tip) => {
+      <TipForm placeId={placeId} />
+      {sortedTips
+        ? sortedTips.map((tip) => {
             return <Tip key={tip.id} userName={tip.userName} text={tip.text} />;
           })
         : null}
-      <TipForm placeId={placeId} />
     </div>
   );
 }
