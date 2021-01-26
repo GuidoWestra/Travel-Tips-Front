@@ -113,20 +113,32 @@ export default function SignUp() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Upload Picture</Form.Label>
+          <label class="form-label" for="customFile">
+            Upload Image
+          </label>
+          <br />
           <input
+            type="file"
+            class="form-control"
+            id="customFile"
+            label="Example file input"
             type="file"
             name="image"
             onChange={handleFileInputChange}
             className="from-input"
-          ></input>
+          />
         </Form.Group>
-        <button type="submit" onClick={submitImage}>
-          Choose this picture
-        </button>
-        {preview && (
-          <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
-        )}
+        <div>
+          {preview && (
+            <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
+          )}
+        </div>
+        <br />
+        {preview ? (
+          <Button variant="dark" type="submit" onClick={submitImage}>
+            Choose this picture
+          </Button>
+        ) : null}
 
         <Form.Group className="mt-5">
           <Button variant="primary" type="submit" onClick={submitForm}>
