@@ -6,9 +6,7 @@ import { selectPlaces } from "../../store/places/selectors";
 
 export default function CarouSel() {
   const places = useSelector(selectPlaces);
-  const appState = useSelector(selectAppLoading);
-  console.log("am i loading", appState);
-  if (places[0])
+  if (places)
     return (
       <div>
         <Carousel

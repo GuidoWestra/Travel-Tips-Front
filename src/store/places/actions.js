@@ -22,7 +22,6 @@ export const fetchPlaces = () => {
     dispatch(appLoading());
     try {
       const result = await Axios.get(`${apiUrl}/places/list`);
-      console.log("All Places ", result.data.data);
       dispatch(setPlaces(result.data.data));
       dispatch(appDoneLoading());
     } catch (e) {
@@ -33,23 +32,23 @@ export const fetchPlaces = () => {
 //places/:id
 export const fetchSinglePlace = (id) => {
   return async (dispatch, getState) => {
-    dispatch(appLoading());
+    // dispatch(appLoading());
     try {
       const result = await Axios.get(`${apiUrl}/places/${id}`);
-      console.log("All Places ", result);
-      dispatch(appDoneLoading());
-      dispatch(setPlace());
+      console.log("I am result inside actions", result);
+      // dispatch(appDoneLoading());
+      dispatch(setPlace(result.data.data));
     } catch (e) {
       console.log(e.message);
     }
   };
 };
 //post/places include name description city photo in the body.
+// make Dynamic with token
 export const postPlace = () => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
-      console.log("Am i being called?");
       const result = await Axios.post(
         `${apiUrl}/places`,
         {

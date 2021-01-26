@@ -8,18 +8,30 @@ import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
 
 export default function Home() {
-  const [place, setPlace] = useState("");
-  const dispatch = useDispatch();
+  const [criteria, setCriteria] = useState("");
   const places = useSelector(selectPlaces);
-  console.log("I am places on homepage", places);
-  function onClickHandler() {
-    console.log("Search Button Pressed!", place);
-    dispatch(fetchSinglePlace(place));
+  const dispatch = useDispatch();
+
+  // places = all places
+  // place = search criteria
+
+  function search() {
+    console.log("I am places", places);
+    if (places) {
+      return places.filter(
+        (item) =>
+          !item.name.toLowerCase().search(criteria.toLowerCase()) ||
+          !item.city.toLowerCase().search(criteria.toLowerCase())
+      );
+    } else return null;
   }
+  const listOfPlaces = search();
+  console.log("I am list of places!", listOfPlaces);
 
   useEffect(() => {
     dispatch(fetchPlaces());
   }, []);
+
   return (
     <div style={{ alignItems: "center" }}>
       <Jumbotron>
@@ -27,19 +39,18 @@ export default function Home() {
       </Jumbotron>
       <InputGroup className="mb-3">
         <FormControl
-          onChange={(event) => setPlace(event.target.value)}
-          value={place}
+          onChange={(event) => setCriteria(event.target.value)}
+          value={criteria}
+          type="text"
           placeholder="Place"
         />
         <InputGroup.Append>
-          <Button onClick={() => onClickHandler()} variant="outline-dark">
-            Search
-          </Button>
+          <Button variant="outline-secondary">Search</Button>
         </InputGroup.Append>
       </InputGroup>
-      <CarouSel />
-
-      {/* {place === "Amsterdam" ? <PlaceCard props={place} /> : <p>click here to make a new place</p>} */}
+      {criteria ? <PlaceCard data={listOfPlaces} /> : <CarouSel />}
+      {/* {place !== "Amsterdam" ? <CarouSel /> : null} */}
+      {/* {place === "Amsterdam" ? <PlaceCard props={place} /> : null} */}
     </div>
   );
 }
