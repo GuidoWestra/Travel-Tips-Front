@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { fetchTipsForPlace } from "../../store/tips/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTipsForPlace } from "../../store/tips/selectors";
+import { useParams } from "react-router-dom";
 
 export default function Details() {
   const dispatch = useDispatch();
@@ -14,8 +15,8 @@ export default function Details() {
   const sortedTips = [...data].sort((a, b) => {
     return b.id - a.id;
   });
-
-  const placeId = 1; //should come from a route
+  const place = useParams();
+  const placeId = place.id; //should come from a route
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
   }, [dispatch]);

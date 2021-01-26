@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 export default function PlaceCard(props) {
-  console.log("I am props inside PlaceCard", props);
-  useEffect(() => {}, []);
+  const history = useHistory();
 
+  function onClickHandler(city) {
+    history.push(`/details/${city.id}`);
+  }
+  useEffect(() => {}, []);
   return (
     <div>
       {props.data.map((city) => {
@@ -22,7 +26,9 @@ export default function PlaceCard(props) {
             <Card.Body>
               <Card.Title>{city.name}</Card.Title>
               <Card.Text>{city.description}</Card.Text>
-              <Button variant="dark">Learn More!</Button>
+              <Button onClick={() => onClickHandler(city)} variant="dark">
+                Learn More!
+              </Button>
             </Card.Body>
           </Card>
         );
