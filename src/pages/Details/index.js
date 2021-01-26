@@ -6,11 +6,12 @@ import { fetchTipsForPlace } from "../../store/tips/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTipsForPlace } from "../../store/tips/selectors";
 import { useParams } from "react-router-dom";
+import DetailsCard from "../../components/DetailsCard";
+import { Container } from "react-bootstrap";
 
 export default function Details() {
   const dispatch = useDispatch();
   const data = useSelector(selectTipsForPlace);
-  console.log(`i am inside of a component, from selector`, data);
 
   const sortedTips = [...data].sort((a, b) => {
     return b.id - a.id;
@@ -21,8 +22,9 @@ export default function Details() {
     dispatch(fetchTipsForPlace(placeId));
   }, [dispatch]);
   return (
-    <div>
+    <Container style={{ maxWidth: 500 }}>
       <h3>I am the details page</h3>
+      <DetailsCard data={placeId} />
       <TipForm placeId={placeId} />
       {sortedTips
         ? sortedTips.map((tip) => {
@@ -37,6 +39,6 @@ export default function Details() {
             );
           })
         : null}
-    </div>
+    </Container>
   );
 }

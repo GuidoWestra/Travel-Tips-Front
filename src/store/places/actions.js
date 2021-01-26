@@ -35,7 +35,6 @@ export const fetchSinglePlace = (id) => {
     // dispatch(appLoading());
     try {
       const result = await Axios.get(`${apiUrl}/places/${id}`);
-      console.log("I am result inside actions", result);
       // dispatch(appDoneLoading());
       dispatch(setPlace(result.data.data));
     } catch (e) {

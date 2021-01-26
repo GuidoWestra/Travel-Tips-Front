@@ -6,7 +6,6 @@ import { addTip } from "../../store/tips/actions";
 
 export default function TipForm({ placeId }) {
   const [text, set_text] = useState("");
-  console.log(`bla bla bla`, text);
   const dispatch = useDispatch();
   return (
     <div style={{ margin: "20px" }}>
@@ -14,7 +13,6 @@ export default function TipForm({ placeId }) {
         onSubmit={(e) => {
           e.preventDefault();
           dispatch(addTip(placeId, text));
-          console.log("click click click");
           set_text("");
         }}
       >
