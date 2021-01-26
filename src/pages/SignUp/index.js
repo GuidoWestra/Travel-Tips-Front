@@ -6,7 +6,8 @@ import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-import { Col, Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
+import { CLOUDINARY_URL } from "../../config/constants";
 
 export default function SignUp() {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [fileInput, setFileInput] = useState("");
   const [preview, setPreview] = useState("");
+  const [photoLink, setPhotoLink] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -34,28 +36,37 @@ export default function SignUp() {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
+    setFileInput(file);
   };
 
-  const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
+  const uploadImage = async (fileInput) => {
     try {
-      await fetch("/api/upload", {
+      const formData = new FormData();
+      formData.append("file", fileInput);
+      formData.append("upload_preset", "r2hzqmfa");
+      const resp = await fetch(CLOUDINARY_URL, {
         method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { "Content-type": "application/jason" },
+        body: formData,
       });
+      const body = await resp.json();
+      console.log("response from upload", body.url);
+      setPhotoLink(body.url);
+      return body.url;
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
+      return null;
     }
   };
+
+  function submitImage(event) {
+    event.preventDefault();
+    uploadImage(fileInput);
+  }
 
   function submitForm(event) {
     event.preventDefault();
 
-    if (!preview) return;
-    uploadImage(preview);
-
-    dispatch(signUp(name, email, password, fileInput));
+    dispatch(signUp(name, email, password, photoLink));
 
     setEmail("");
     setPassword("");
@@ -107,10 +118,12 @@ export default function SignUp() {
             type="file"
             name="image"
             onChange={handleFileInputChange}
-            value={fileInput}
             className="from-input"
           ></input>
         </Form.Group>
+        <button type="submit" onClick={submitImage}>
+          Choose this picture
+        </button>
         {preview && (
           <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
         )}
