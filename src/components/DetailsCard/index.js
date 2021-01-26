@@ -24,6 +24,7 @@ export default function DetailsCard(props) {
           <Card.Img
             variant="top"
             src="https://propertyeu.info/media/newsarticles/97/8a/ea/1a/978aea1a-fbd0-41fd-bf81-a46efa1820c5/images/amsterdam-itinerary-houses-canal-xlarge.jpg?w=690"
+            // i can't see a pic >> net::ERR_CONNECTION_TIMED_OUT
           />
           <Card.Body>
             <Card.Title>{place.name}</Card.Title>

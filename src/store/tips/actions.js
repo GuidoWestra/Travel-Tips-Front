@@ -10,7 +10,7 @@ export function allTipsForOnePlace(data) {
     payload: data,
   };
 }
-
+//all tips for a place
 export const fetchTipsForPlace = (id) => {
   return async (dispatch, getState) => {
     try {
@@ -21,7 +21,7 @@ export const fetchTipsForPlace = (id) => {
     }
   };
 };
-
+// add tip
 export const addTip = (placeId, text) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
@@ -43,7 +43,8 @@ export const addTip = (placeId, text) => {
     dispatch(fetchTipsForPlace(placeId));
   };
 };
-
+// delete tip
+//nice to add: when delete tip - delete all likes for that tip
 export const deleteTip = (id, placeId) => {
   return async (dispatch, getState) => {
     try {

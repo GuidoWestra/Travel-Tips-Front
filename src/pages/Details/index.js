@@ -10,35 +10,26 @@ import DetailsCard from "../../components/DetailsCard";
 import { Container } from "react-bootstrap";
 
 export default function Details() {
+  const place = useParams();
+  const placeId = place.id; //should come from a route
   const dispatch = useDispatch();
+
   const data = useSelector(selectTipsForPlace);
+  console.log(data);
 
   const sortedTips = [...data].sort((a, b) => {
     return b.id - a.id;
   });
-  const place = useParams();
-  const placeId = place.id; //should come from a route
+
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
-  }, [dispatch]);
+  }, [dispatch, placeId]);
   return (
     <Container style={{ maxWidth: 500 }}>
       <h3>I am the details page</h3>
       <DetailsCard data={placeId} />
       <TipForm placeId={placeId} />
-      {sortedTips
-        ? sortedTips.map((tip) => {
-            return (
-              <Tip
-                key={tip.id}
-                userName={tip.userName}
-                text={tip.text}
-                id={tip.id}
-                placeId={placeId}
-              />
-            );
-          })
-        : null}
+      <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
     </Container>
   );
 }
