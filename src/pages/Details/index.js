@@ -25,7 +25,15 @@ export default function Details() {
       <TipForm placeId={placeId} />
       {sortedTips
         ? sortedTips.map((tip) => {
-            return <Tip key={tip.id} userName={tip.userName} text={tip.text} />;
+            return (
+              <Tip
+                key={tip.id}
+                userName={tip.userName}
+                text={tip.text}
+                id={tip.id}
+                placeId={placeId}
+              />
+            );
           })
         : null}
     </div>
