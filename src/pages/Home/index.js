@@ -1,17 +1,35 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
-import { fetchPlaces, fetchSinglePlace, postPlace } from "../../store/places/actions";
+import CarouSel from "../../components/CarouSel";
+import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
+import { selectPlaces } from "../../store/places/selectors";
+
 export default function Home() {
-  const [place, setPlace] = useState("");
+  const [criteria, setCriteria] = useState("");
+  const places = useSelector(selectPlaces);
   const dispatch = useDispatch();
-  function onClickHandler() {
-    console.log("Search Button Pressed!", place);
+
+  // places = all places
+  // place = search criteria
+
+  function search() {
+    console.log("I am places", places);
+    if (places) {
+      return places.filter(
+        (item) =>
+          !item.name.toLowerCase().search(criteria.toLowerCase()) ||
+          !item.city.toLowerCase().search(criteria.toLowerCase())
+      );
+    } else return null;
   }
+  const listOfPlaces = search();
+  console.log("I am list of places!", listOfPlaces);
+
   useEffect(() => {
-    dispatch(postPlace());
+    dispatch(fetchPlaces());
   }, []);
 
   return (
@@ -21,17 +39,18 @@ export default function Home() {
       </Jumbotron>
       <InputGroup className="mb-3">
         <FormControl
-          onChange={(event) => setPlace(event.target.value)}
-          value={place}
+          onChange={(event) => setCriteria(event.target.value)}
+          value={criteria}
+          type="text"
           placeholder="Place"
         />
         <InputGroup.Append>
-          <Button onClick={() => onClickHandler()} variant="outline-dark">
-            Search
-          </Button>
+          <Button variant="outline-secondary">Search</Button>
         </InputGroup.Append>
       </InputGroup>
-      {place === "Amsterdam" ? <PlaceCard props={place} /> : null}
+      {criteria ? <PlaceCard data={listOfPlaces} /> : <CarouSel />}
+      {/* {place !== "Amsterdam" ? <CarouSel /> : null} */}
+      {/* {place === "Amsterdam" ? <PlaceCard props={place} /> : null} */}
     </div>
   );
 }
