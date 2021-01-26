@@ -38,11 +38,27 @@ export const addTip = (placeId, text) => {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(`why not?`);
-      showMessageWithTimeout("info", false, "Tip added!");
-      dispatch(fetchTipsForPlace(placeId));
     } catch (e) {
       console.log(e.message);
     }
+    showMessageWithTimeout("info", false, "Tip added!"); //doesn't work
+    dispatch(fetchTipsForPlace(placeId));
+  };
+};
+
+export const deleteTip = (id, placeId) => {
+  console.log(`action place id`, placeId);
+  return async (dispatch, getState) => {
+    try {
+      const token = selectToken(getState());
+      console.log(`token?`, token);
+      await axios.delete(`${apiUrl}/tip/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+    showMessageWithTimeout("info", false, "Tip deleted!"); //doesn't work
+    dispatch(fetchTipsForPlace(placeId));
   };
 };
