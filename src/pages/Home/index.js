@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
-import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
+import { fetchPlaces, fetchSinglePlace, postPlace } from "../../store/places/actions";
 export default function Home() {
   const [place, setPlace] = useState("");
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function Home() {
     console.log("Search Button Pressed!", place);
   }
   useEffect(() => {
-    dispatch(fetchPlaces());
+    dispatch(postPlace());
   }, []);
 
   return (
