@@ -1,19 +1,25 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
-import { fetchPlaces, fetchSinglePlace, postPlace } from "../../store/places/actions";
+import CarouSel from "../../components/CarouSel";
+import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
+import { selectPlaces } from "../../store/places/selectors";
+
 export default function Home() {
   const [place, setPlace] = useState("");
   const dispatch = useDispatch();
+  const places = useSelector(selectPlaces);
+  console.log("I am places on homepage", places);
   function onClickHandler() {
     console.log("Search Button Pressed!", place);
+    dispatch(fetchSinglePlace(place));
   }
-  useEffect(() => {
-    dispatch(postPlace());
-  }, []);
 
+  useEffect(() => {
+    dispatch(fetchPlaces());
+  }, []);
   return (
     <div style={{ alignItems: "center" }}>
       <Jumbotron>
@@ -31,7 +37,9 @@ export default function Home() {
           </Button>
         </InputGroup.Append>
       </InputGroup>
-      {place === "Amsterdam" ? <PlaceCard props={place} /> : null}
+      <CarouSel />
+
+      {/* {place === "Amsterdam" ? <PlaceCard props={place} /> : <p>click here to make a new place</p>} */}
     </div>
   );
 }
