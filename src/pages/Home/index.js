@@ -4,19 +4,16 @@ import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
 import CarouSel from "../../components/CarouSel";
-import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
+import { fetchPlaces } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
   const [criteria, setCriteria] = useState("");
   const places = useSelector(selectPlaces);
   const dispatch = useDispatch();
 
-  // places = all places
-  // place = search criteria
-
   function search() {
-    console.log("I am places", places);
     if (places) {
       return places.filter(
         (item) =>
@@ -26,7 +23,6 @@ export default function Home() {
     } else return null;
   }
   const listOfPlaces = search();
-  console.log("I am list of places!", listOfPlaces);
 
   useEffect(() => {
     dispatch(fetchPlaces());
