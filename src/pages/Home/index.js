@@ -4,7 +4,7 @@ import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
 import CarouSel from "../../components/CarouSel";
-import { fetchPlaces, fetchSinglePlace } from "../../store/places/actions";
+import { fetchPlaces } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
 
 export default function Home() {

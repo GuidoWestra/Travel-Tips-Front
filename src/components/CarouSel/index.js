@@ -1,7 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { selectAppLoading } from "../../store/appState/selectors";
 import { selectPlaces } from "../../store/places/selectors";
 
 export default function CarouSel() {
