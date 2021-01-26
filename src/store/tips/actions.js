@@ -15,7 +15,6 @@ export const fetchTipsForPlace = (id) => {
   return async (dispatch, getState) => {
     try {
       const res = await axios.get(`${apiUrl}/tips/${id}`);
-      console.log(`response`, res.data.data);
       dispatch(allTipsForOnePlace(res.data.data));
     } catch (e) {
       console.log(e.message);
@@ -26,7 +25,6 @@ export const fetchTipsForPlace = (id) => {
 export const addTip = (placeId, text) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
-    console.log(`token?`, token);
     try {
       await axios.post(
         `${apiUrl}/tips`,
@@ -47,11 +45,9 @@ export const addTip = (placeId, text) => {
 };
 
 export const deleteTip = (id, placeId) => {
-  console.log(`action place id`, placeId);
   return async (dispatch, getState) => {
     try {
       const token = selectToken(getState());
-      console.log(`token?`, token);
       await axios.delete(`${apiUrl}/tip/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
