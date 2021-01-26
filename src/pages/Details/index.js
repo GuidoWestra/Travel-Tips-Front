@@ -10,9 +10,9 @@ export default function Details() {
   const dispatch = useDispatch();
   const data = useSelector(selectTipsForPlace);
   console.log(`i am inside of a component, from selector`, data);
-
+  const placeId = 1;
   useEffect(() => {
-    dispatch(fetchTipsForPlace(1));
+    dispatch(fetchTipsForPlace(placeId));
   }, [dispatch]);
   return (
     <div>
@@ -22,7 +22,7 @@ export default function Details() {
             return <Tip key={tip.id} userName={tip.userName} text={tip.text} />;
           })
         : null}
-      <TipForm />
+      <TipForm placeId={placeId} />
     </div>
   );
 }
