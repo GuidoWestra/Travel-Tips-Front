@@ -56,6 +56,23 @@ export const deleteTip = (id, placeId) => {
       console.log(e.message);
     }
     showMessageWithTimeout("info", false, "Tip deleted!"); //doesn't work
-    dispatch(fetchTipsForPlace(placeId));
+    dispatch(fetchTipsForUser());
+  };
+};
+
+//user tips for account page
+
+export const fetchTipsForUser = () => {
+  return async (dispatch, getState) => {
+    try {
+      const token = selectToken(getState());
+      const res = await axios.get(`${apiUrl}/user/tips`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      dispatch(allTipsForOnePlace(res.data.data));
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 };
