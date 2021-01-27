@@ -17,9 +17,9 @@ export default function DetailsCard(props) {
     return (
       <div>
         <Card
-          style={{
-            width: 500,
-          }}
+        // style={{
+        //   width: 500,
+        // }}
         >
           <Card.Img
             variant="top"

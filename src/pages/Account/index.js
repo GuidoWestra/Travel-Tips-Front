@@ -13,10 +13,9 @@ import EditPicture from "./EditPicture";
 export default function Account() {
   const [editMode, setEditMode] = useState(false);
   const user = useSelector(selectUser);
-  console.log("User on Account Page!", user);
+  // console.log("User on Account Page!", user);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("Render");
     dispatch(fetchTipsForUser());
   }, [dispatch]);
   const tips = useSelector(selectTipsForPlace);
@@ -41,11 +40,8 @@ export default function Account() {
           <div class="media align-items-end profile-header">
             <div class="profile mr-3">
               <img
-
-               
-
-              src={profilePictureCheck}
- alt="profile pic"
+                src={profilePictureCheck}
+                alt="profile pic"
                 width="230"
                 height="200"
                 class="rounded mb-2 img-thumbnail"
