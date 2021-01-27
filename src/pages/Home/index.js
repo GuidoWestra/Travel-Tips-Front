@@ -35,24 +35,19 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div style={{ alignItems: "center" }}>
-      <Jumbotron>
-        <h1>HomePage</h1>
-      </Jumbotron>
+    <div style={{}}>
       <InputGroup className="mb-3">
         <FormControl
           onChange={(event) => setCriteria(event.target.value)}
           value={criteria}
           type="text"
           placeholder="Place"
+          style={{ maxWidth: "60%", marginLeft: "20%" }}
         />
-        <InputGroup.Append>
-          <Button variant="outline-secondary">Search</Button>
-        </InputGroup.Append>
       </InputGroup>
       {criteria ? <PlaceCard data={listOfPlaces} /> : <CarouSel />}
       {criteria && listOfPlaces.length === 0 ? (
-        <Button variant="dark" onClick={() => navigate()}>
+        <Button style={{ marginLeft: "43%" }} variant="dark" onClick={() => navigate()}>
           Add a new place
         </Button>
       ) : null}

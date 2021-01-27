@@ -67,6 +67,7 @@ export default function PlaceForm() {
 
   useEffect(() => {
     if (token === null) {
+      dispatch(showMessageWithTimeout("danger", true, "Please login to create new places!"));
       history.push("/");
     }
   }, [token, history]);

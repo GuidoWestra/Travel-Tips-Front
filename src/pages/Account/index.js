@@ -30,6 +30,10 @@ export default function Account() {
     }
   };
 
+  const profilePictureCheck = !user.photo
+    ? "http://res.cloudinary.com/dxtq8ajzg/image/upload/v1611749197/unqla8crrv5lzffchfnr.png"
+    : user.photo;
+
   return (
     <Container style={{ marginTop: "32px", padding: "64px" }}>
       <div class="bg-white shadow rounded overflow-hidden">
@@ -37,8 +41,11 @@ export default function Account() {
           <div class="media align-items-end profile-header">
             <div class="profile mr-3">
               <img
-                src={user.photo}
-                alt="profile pic"
+
+               
+
+              src={profilePictureCheck}
+ alt="profile pic"
                 width="230"
                 height="200"
                 class="rounded mb-2 img-thumbnail"
