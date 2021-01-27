@@ -8,12 +8,14 @@ import { selectTipsForPlace } from "../../store/tips/selectors";
 import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard";
 import { Container } from "react-bootstrap";
+import { selectToken } from "../../store/user/selectors";
+import { Link } from "react-router-dom";
 
 export default function Details() {
   const place = useParams();
   const placeId = place.id; //should come from a route
   const dispatch = useDispatch();
-
+  const token = useSelector(selectToken);
   const data = useSelector(selectTipsForPlace);
   console.log(data);
 
@@ -28,7 +30,13 @@ export default function Details() {
     <Container style={{ maxWidth: 500 }}>
       <h3>I am the details page</h3>
       <DetailsCard data={placeId} />
-      <TipForm placeId={placeId} />
+      {token ? (
+        <TipForm placeId={placeId} />
+      ) : (
+        <p>
+          <Link to="/login">Log in</Link> to add a tip!
+        </p>
+      )}
       <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
     </Container>
   );
