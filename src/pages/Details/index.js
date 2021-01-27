@@ -20,7 +20,7 @@ export default function Details() {
   const placeId = place.id; //should come from a route
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
-  }, [dispatch]);
+  }, [dispatch, placeId]);
   return (
     <Container style={{ maxWidth: 500 }}>
       <h3>I am the details page</h3>

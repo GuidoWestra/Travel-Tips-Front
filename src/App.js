@@ -15,6 +15,7 @@ import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Details from "./pages/Details";
+import PlaceForm from "./pages/PlaceForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
         <Route path="/details/:id" component={Details} />
+        <Route path="/placeForm" component={PlaceForm} />
       </Switch>
     </div>
   );

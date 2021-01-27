@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { Button, Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPlace, selectPlaces } from "../../store/places/selectors";
+import { selectPlace } from "../../store/places/selectors";
 import { fetchSinglePlace } from "../../store/places/actions";
 
 export default function DetailsCard(props) {
@@ -11,7 +11,7 @@ export default function DetailsCard(props) {
 
   useEffect(() => {
     dispatch(fetchSinglePlace(props.data));
-  }, []);
+  }, [dispatch, props.data]);
 
   if (place)
     return (

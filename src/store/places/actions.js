@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
-import { appDoneLoading, appLoading } from "../appState/actions";
+import { appDoneLoading, appLoading, showMessageWithTimeout } from "../appState/actions";
+import { selectToken } from "../user/selectors";
 
 //set all places
 const setPlaces = (places) => {
@@ -44,26 +45,30 @@ export const fetchSinglePlace = (id) => {
 };
 //post/places include name description city photo in the body.
 // make Dynamic with token
-export const postPlace = () => {
+export const postPlace = (name, description, city, photoUrl) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
+      const token = selectToken(getState());
+
+      if (!token) return;
       const result = await Axios.post(
         `${apiUrl}/places`,
         {
-          name: "Canalss",
-          description: "quite wet",
-          city: "Amsterdam",
-          photo: "canal.canal",
+          name,
+          description,
+          city,
+          photo: photoUrl,
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTYxMTY0OTc5NywiZXhwIjoxNjExNjU2OTk3fQ.L1AOKzcEkTZ8JrYNu_JOjx3S5wk1KuzQZPWqUtNK-KM`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log("What am i ", result);
+      console.log(result);
       dispatch(appDoneLoading());
+      dispatch(showMessageWithTimeout("success", false, `${name} succes fully created`, 1500));
     } catch (e) {
       console.log(e);
     }
