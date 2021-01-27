@@ -41,11 +41,17 @@ export default function Tip({ data, placeId }) {
           >
             <h5>{c.userName}</h5>
             <p>{c.text}</p>
-            <Button
+            <button
+              style={{
+                backgroundColor: "white",
+                border: "none",
+                outline: "none",
+                fontSize: "20px",
+              }}
               onClick={() => {
                 console.log("meow meow");
-                // dispatch(addLike(c.id));
-                console.log(c.id);
+
+                console.log(`user id`, user.id);
 
                 const smt = likes.find((like) => {
                   return like.tipId === c.id &&
@@ -54,29 +60,53 @@ export default function Tip({ data, placeId }) {
                     : null;
                 });
                 console.log(`whats going on even?`, smt);
-                smt ? dispatch(deleteLike(c.id)) : dispatch(addLike(c.id));
-              }}
-              variant="info"
-              style={{ fontSize: "20px" }}
-            >
-              {likes.find((like) => {
-                return like.tipId === c.id && like.userId === parseInt(user.id)
-                  ? like
-                  : null;
-              })
-                ? "♥"
-                : "♡"}{" "}
-              {likeNum.length}
-            </Button>
-            <Button
-              variant="danger"
-              style={{ margin: "20px" }}
-              onClick={() => {
-                dispatch(deleteTip(c.id, placeId));
+
+                if (user.id === c.userId) {
+                  console.log("you cant like your own tip");
+                } else {
+                  smt ? dispatch(deleteLike(c.id)) : dispatch(addLike(c.id));
+                }
               }}
             >
-              delete tip
-            </Button>{" "}
+              {!user.id || user.id === c.userId ? (
+                <div>
+                  <b style={{ fontSize: "20px" }}>❤</b>
+                  {likeNum.length}
+                </div>
+              ) : likes.find((like) => {
+                  return like.tipId === c.id &&
+                    like.userId === parseInt(user.id)
+                    ? like
+                    : null;
+                }) ? (
+                <div>
+                  <img
+                    alt="like"
+                    src="https://img.icons8.com/metro/26/000000/filled-like.png"
+                  />
+                  {likeNum.length}
+                </div>
+              ) : (
+                <div>
+                  <img
+                    alt="like"
+                    src="https://img.icons8.com/material-outlined/24/000000/filled-like.png"
+                  />
+                  {likeNum.length}
+                </div>
+              )}
+            </button>
+            {user.id ? (
+              <Button
+                variant="danger"
+                style={{ margin: "20px" }}
+                onClick={() => {
+                  dispatch(deleteTip(c.id, placeId));
+                }}
+              >
+                delete tip
+              </Button>
+            ) : null}
           </div>
         );
       })}
@@ -87,3 +117,4 @@ export default function Tip({ data, placeId }) {
 //onclick check if likes.includes like with tip.id and user.id
 //if true >>> dispatch removeLike
 //if false >>> diaptch addLike
+//<<img src="https://img.icons8.com/ios-filled/24/000000/filled-like.png"/>
