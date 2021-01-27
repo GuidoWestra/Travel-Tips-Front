@@ -6,12 +6,18 @@ import PlaceCard from "../../components/PlaceCard";
 import CarouSel from "../../components/CarouSel";
 import { fetchPlaces } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
+import { useHistory } from "react-router-dom";
 
 export default function Home() {
   const [criteria, setCriteria] = useState("");
   const places = useSelector(selectPlaces);
   const dispatch = useDispatch();
+  const history = useHistory();
 
+  function navigate() {
+    console.log("click");
+    history.push("/placeform");
+  }
   function search() {
     if (places) {
       return places.filter(
@@ -22,6 +28,7 @@ export default function Home() {
     } else return null;
   }
   const listOfPlaces = search();
+  console.log("list of place", listOfPlaces);
 
   useEffect(() => {
     dispatch(fetchPlaces());
@@ -44,8 +51,11 @@ export default function Home() {
         </InputGroup.Append>
       </InputGroup>
       {criteria ? <PlaceCard data={listOfPlaces} /> : <CarouSel />}
-      {/* {place !== "Amsterdam" ? <CarouSel /> : null} */}
-      {/* {place === "Amsterdam" ? <PlaceCard props={place} /> : null} */}
+      {criteria && listOfPlaces.length === 0 ? (
+        <Button variant="dark" onClick={() => navigate()}>
+          Add a new place
+        </Button>
+      ) : null}
     </div>
   );
 }
