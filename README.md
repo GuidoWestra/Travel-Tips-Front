@@ -13,7 +13,7 @@ By doing so, usefull tips stand out more! <br />
 - clone the repo to your device using:  git clone <link> <your project name>  <br />
 - change directory to the cloned repo:  cd <your project name> <br />
 - install all dependencies using:       npm install<br />
-- start expo using:                     npm start<br />
+- start front-end:                      npm start<br />
 
 # Technologies used:
 <img align="left" alt="css logo" width="26px" src="https://cdn.iconscout.com/icon/free/png-512/css-118-569410.png"/>
