@@ -24,6 +24,13 @@ const tokenStillValid = (userWithoutToken) => ({
   payload: userWithoutToken,
 });
 
+const updateImageSuccess = (updatedUser) => {
+  return {
+    type: "USER_UPDATED",
+    payload: updatedUser,
+  };
+};
+
 export const logOut = () => ({ type: LOG_OUT });
 
 export const signUp = (name, email, password, photoLink) => {
@@ -50,6 +57,29 @@ export const signUp = (name, email, password, photoLink) => {
         dispatch(setMessage("danger", true, error.message));
       }
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const updateUser = (photoLink) => {
+  console.log("im action update photo", photoLink);
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    try {
+      const response = await axios.put(
+        `${apiUrl}/updateUserImage`,
+        {
+          photo: photoLink,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(response.data);
+      dispatch(updateImageSuccess(response.data));
+    } catch (e) {
+      console.log(e);
+      dispatch(setMessage("success", true, "Profile Image updated"));
     }
   };
 };
