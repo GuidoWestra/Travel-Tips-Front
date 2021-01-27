@@ -9,7 +9,9 @@ import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard";
 import { Container } from "react-bootstrap";
 import { selectToken } from "../../store/user/selectors";
+import { selectPlace } from "../../store/places/selectors";
 import { Link } from "react-router-dom";
+import { fetchSinglePlace } from "../../store/places/actions";
 
 export default function Details() {
   const place = useParams();
@@ -17,19 +19,21 @@ export default function Details() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const data = useSelector(selectTipsForPlace);
+  const placeData = useSelector(selectPlace);
 
   const sortedTips = [...data].sort((a, b) => {
     return b.id - a.id;
   });
-  if (sortedTips)
-    console.log(`list of tips for place with id: ${placeId}`, sortedTips);
+  // if (sortedTips)
+  //   console.log(`list of tips for place with id: ${placeId}`, sortedTips);
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
+    dispatch(fetchSinglePlace(placeId));
   }, [dispatch, placeId]);
   return (
     <>
       <Container style={{ marginTop: "32px", padding: "64px" }}>
-        <DetailsCard data={placeId} />
+        <DetailsCard data={placeData} />
         <div class="bg-light p-4 d-flex justify-content-end text-center">
           <ul class="list-inline mb-0">
             <li class="list-inline-item">
