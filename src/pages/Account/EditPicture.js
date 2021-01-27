@@ -80,14 +80,16 @@ export default function EditPicture() {
         </div>
         <br />
         <div style={{ padding: "10px" }}>
-          {preview ? (
+          {preview && !photoLink ? (
             <Button variant="dark" type="submit" onClick={submitImage}>
               Choose this picture
             </Button>
           ) : null}
-          <Button variant="success" type="submit" onClick={persistImage}>
-            Save Change
-          </Button>
+          {photoLink ? (
+            <Button variant="success" type="submit" onClick={persistImage}>
+              Save Change
+            </Button>
+          ) : null}
         </div>
       </Form>
     </Container>
