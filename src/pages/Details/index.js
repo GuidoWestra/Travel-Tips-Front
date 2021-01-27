@@ -17,18 +17,19 @@ export default function Details() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const data = useSelector(selectTipsForPlace);
-  console.log(data);
 
   const sortedTips = [...data].sort((a, b) => {
     return b.id - a.id;
   });
-
+  if (sortedTips)
+    console.log(`list of tips for place with id: ${placeId}`, sortedTips);
   useEffect(() => {
     dispatch(fetchTipsForPlace(placeId));
   }, [dispatch, placeId]);
   return (
     <>
       <Container style={{ marginTop: "32px", padding: "64px" }}>
+        <DetailsCard data={placeId} />
         <div class="bg-light p-4 d-flex justify-content-end text-center">
           <ul class="list-inline mb-0">
             <li class="list-inline-item">
@@ -42,7 +43,6 @@ export default function Details() {
             </li>
           </ul>
         </div>{" "}
-        <DetailsCard data={placeId} />
         {token ? (
           <TipForm placeId={placeId} />
         ) : (

@@ -18,7 +18,6 @@ export const fetchAllLikes = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      console.log(`what is that?`, res.data.data);
       dispatch(allLikes(res.data.data));
     } catch (e) {
       console.log(e.message);
