@@ -25,3 +25,41 @@ export const fetchAllLikes = () => {
     }
   };
 };
+
+//add like
+export const addLike = (tipId) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    console.log(token);
+    try {
+      await axios.post(
+        `${apiUrl}/likes/add`,
+        {
+          tipId,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    dispatch(fetchAllLikes());
+  };
+};
+//remove like
+export const deleteLike = (tipId) => {
+  return async (dispatch, getState) => {
+    try {
+      const token = selectToken(getState());
+      await axios.delete(`${apiUrl}/likes/${tipId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    dispatch(fetchAllLikes());
+  };
+};

@@ -3,12 +3,14 @@ import { deleteTip } from "../../store/tips/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { useEffect } from "react";
-import { fetchAllLikes } from "../../store/likes/actions";
+import { fetchAllLikes, addLike, deleteLike } from "../../store/likes/actions";
 import { selectAllLikes } from "../../store/likes/selectors";
+import { selectUser } from "../../store/user/selectors";
 
 export default function Tip({ data, placeId }) {
   const dispatch = useDispatch();
-  const like = 0; //hardcode it for now
+  const user = useSelector(selectUser);
+  console.log(`userId`, user.id);
   const likes = useSelector(selectAllLikes);
   const likesArray = likes
     ? likes.map((l) => {
@@ -39,7 +41,33 @@ export default function Tip({ data, placeId }) {
           >
             <h5>{c.userName}</h5>
             <p>{c.text}</p>
-            <span style={{ fontSize: "20px" }}>♡ {likeNum.length}</span>
+            <Button
+              onClick={() => {
+                console.log("meow meow");
+                // dispatch(addLike(c.id));
+                console.log(c.id);
+
+                const smt = likes.find((like) => {
+                  return like.tipId === c.id &&
+                    like.userId === parseInt(user.id)
+                    ? like
+                    : null;
+                });
+                console.log(`whats going on even?`, smt);
+                smt ? dispatch(deleteLike(c.id)) : dispatch(addLike(c.id));
+              }}
+              variant="info"
+              style={{ fontSize: "20px" }}
+            >
+              {likes.find((like) => {
+                return like.tipId === c.id && like.userId === parseInt(user.id)
+                  ? like
+                  : null;
+              })
+                ? "♥"
+                : "♡"}{" "}
+              {likeNum.length}
+            </Button>
             <Button
               variant="danger"
               style={{ margin: "20px" }}
@@ -55,3 +83,7 @@ export default function Tip({ data, placeId }) {
     </div>
   );
 }
+
+//onclick check if likes.includes like with tip.id and user.id
+//if true >>> dispatch removeLike
+//if false >>> diaptch addLike
