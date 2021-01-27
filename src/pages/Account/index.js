@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../store/user/selectors";
-
+import Button from "react-bootstrap/Button";
 import { Container } from "react-bootstrap";
 
 import "./index.css";
+import EditPicture from "./EditPicture";
 
 export default function Account() {
+  const [editMode, setEditMode] = useState(false);
   const user = useSelector(selectUser);
   console.log("User on Account Page!", user);
 
@@ -14,10 +16,19 @@ export default function Account() {
     console.log("Render");
   }, []);
 
+  const onClickEditPhoto = () => {
+    if (editMode === false) {
+      setEditMode(true);
+    }
+    if (editMode === true) {
+      setEditMode(false);
+    }
+  };
+
   return (
     <Container style={{ marginTop: "32px", padding: "64px" }}>
-      <div className="bg-white shadow rounded overflow-hidden">
-        <div className="px-4 pt-0 pb-4 bg-dark">
+      <div class="bg-white shadow rounded overflow-hidden">
+        <div class="px-4 pt-0 pb-4 bg-dark">
           <div class="media align-items-end profile-header">
             <div class="profile mr-3">
               <img
@@ -27,14 +38,18 @@ export default function Account() {
                 height="200"
                 class="rounded mb-2 img-thumbnail"
               />
-              <a href="#" class="btn btn-dark btn-sm btn-block">
-                Edit picture
-              </a>
+              <Button
+                className="btn btn-dark btn-sm btn-block"
+                onClick={onClickEditPhoto}
+              >
+                {editMode ? "Exit Edit" : "Edit picture"}
+              </Button>
             </div>
 
             <div class="media-body mb-5 text-white">
               <h4 class="mt-0 mb-0">{user.name}</h4>
-              <p></p>
+
+              <p>{user.email}</p>
             </div>
           </div>
         </div>
@@ -50,45 +65,47 @@ export default function Account() {
             </li>
           </ul>
         </div>
-
-        <div class="py-4">
-          <h5 class="mb-3">Recent Tips</h5>
-          <div class="p-4 bg-light rounded shadow-sm mb-3">
-            <p class="font-italic mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
-            </p>
-            <ul class="list-inline small text-muted mt-3 mb-0">
-              <li class="list-inline-item">
-                <i class="fa fa-heart-o mr-2"></i>X Likes
-              </li>
-            </ul>
-          </div>
-          <div class="p-4 bg-light rounded shadow-sm mb-3">
-            <p class="font-italic mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
-            </p>
-            <ul class="list-inline small text-muted mt-3 mb-0">
-              <li class="list-inline-item">
-                <i class="fa fa-heart-o mr-2"></i>X Likes
-              </li>
-            </ul>
-          </div>
-          <div class="p-4 bg-light rounded shadow-sm">
-            <p class="font-italic mb-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam.
-            </p>
-            <ul class="list-inline small text-muted mt-3 mb-0">
-              <li class="list-inline-item">
-                <i class="fa fa-heart-o mr-2"></i>X Likes
-              </li>
-            </ul>
-          </div>
+        <div className="media align-items-end">
+          {editMode ? <EditPicture /> : false}
+        </div>
+      </div>
+      <div class="py-4">
+        <h5 class="mb-3">Recent Tips</h5>
+        <div class="p-4 bg-light rounded shadow-sm mb-3">
+          <p class="font-italic mb-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </p>
+          <ul class="list-inline small text-muted mt-3 mb-0">
+            <li class="list-inline-item">
+              <i class="fa fa-heart-o mr-2"></i>X Likes
+            </li>
+          </ul>
+        </div>
+        <div class="p-4 bg-light rounded shadow-sm mb-3">
+          <p class="font-italic mb-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </p>
+          <ul class="list-inline small text-muted mt-3 mb-0">
+            <li class="list-inline-item">
+              <i class="fa fa-heart-o mr-2"></i>X Likes
+            </li>
+          </ul>
+        </div>
+        <div class="p-4 bg-light rounded shadow-sm">
+          <p class="font-italic mb-0">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam.
+          </p>
+          <ul class="list-inline small text-muted mt-3 mb-0">
+            <li class="list-inline-item">
+              <i class="fa fa-heart-o mr-2"></i>X Likes
+            </li>
+          </ul>
         </div>
       </div>
     </Container>
