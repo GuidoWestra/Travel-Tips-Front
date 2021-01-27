@@ -11,18 +11,16 @@ export default function PlaceCard(props) {
   useEffect(() => {}, []);
   return (
     <div>
-      {props.data.map((city) => {
+      {props.data.map((city, i) => {
         return (
           <Card
+            key={i}
             style={{
               marginLeft: "30%",
               width: "40%",
             }}
           >
-            <Card.Img
-              variant="top"
-              src="https://propertyeu.info/media/newsarticles/97/8a/ea/1a/978aea1a-fbd0-41fd-bf81-a46efa1820c5/images/amsterdam-itinerary-houses-canal-xlarge.jpg?w=690"
-            />
+            <Card.Img variant="top" src={city.photo} />
             <Card.Body>
               <Card.Title>{city.name}</Card.Title>
               <Card.Text>{city.description}</Card.Text>
