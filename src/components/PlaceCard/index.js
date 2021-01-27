@@ -18,6 +18,7 @@ export default function PlaceCard(props) {
             style={{
               marginLeft: "30%",
               width: "40%",
+              marginTop: 20,
             }}
           >
             <Card.Img variant="top" src={city.photo} />
