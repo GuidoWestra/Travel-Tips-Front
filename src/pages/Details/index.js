@@ -27,17 +27,31 @@ export default function Details() {
     dispatch(fetchTipsForPlace(placeId));
   }, [dispatch, placeId]);
   return (
-    <Container style={{ maxWidth: 500 }}>
-      <h3>I am the details page</h3>
-      <DetailsCard data={placeId} />
-      {token ? (
-        <TipForm placeId={placeId} />
-      ) : (
-        <p>
-          <Link to="/login">Log in</Link> to add a tip!
-        </p>
-      )}
-      <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
-    </Container>
+    <>
+      <Container style={{ marginTop: "32px", padding: "64px" }}>
+        <div class="bg-light p-4 d-flex justify-content-end text-center">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item">
+              <h5 class="font-weight-bold mb-0 d-block">
+                {sortedTips ? sortedTips.length : "0"}
+              </h5>
+              <small class="text-muted">
+                {" "}
+                <i class="fa fa-user-circle-o mr-1"></i>Tips
+              </small>
+            </li>
+          </ul>
+        </div>{" "}
+        <DetailsCard data={placeId} />
+        {token ? (
+          <TipForm placeId={placeId} />
+        ) : (
+          <p>
+            <Link to="/login">Log in</Link> to add a tip!
+          </p>
+        )}
+        <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
+      </Container>
+    </>
   );
 }

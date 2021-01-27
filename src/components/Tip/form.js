@@ -8,7 +8,7 @@ export default function TipForm({ placeId }) {
   const [text, set_text] = useState("");
   const dispatch = useDispatch();
   return (
-    <div style={{ margin: "20px" }}>
+    <div>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
