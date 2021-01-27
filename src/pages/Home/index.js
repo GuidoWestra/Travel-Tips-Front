@@ -6,7 +6,6 @@ import PlaceCard from "../../components/PlaceCard";
 import CarouSel from "../../components/CarouSel";
 import { fetchPlaces } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
-import { useHistory } from "react-router-dom";
 
 export default function Home() {
   const [criteria, setCriteria] = useState("");
@@ -26,7 +25,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(fetchPlaces());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div style={{ alignItems: "center" }}>
