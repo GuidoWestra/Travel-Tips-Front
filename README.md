@@ -24,6 +24,6 @@ Please follow the steps below and enjoy our app<br />
 <br />
 
 # This app was made by: 
-## Fabiana : <br /> 
-## Tatiana : <br />
-## Guido   : <br />
+- Fabiana : <br /> 
+- Tatiana : <br />
+- Guido   : <br />
