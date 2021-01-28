@@ -29,6 +29,7 @@ function App() {
 
   return (
     <div>
+
       {location.pathname === "/login" || location.pathname === "/" ? null : (
         <Navigation />
       )}

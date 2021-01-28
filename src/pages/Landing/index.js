@@ -1,26 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import "./App.scss";
 import { TimelineLite, TweenMax, Power3 } from "gsap";
+import { useHistory } from "react-router-dom";
 
 import img1 from "./images/place2.jpg";
 import img2 from "./images/place5.jpg";
 import img3 from "./images/place6.jpg";
-import arrow from "./images/arrow-right.svg";
-import { useHistory } from "react-router-dom";
 
 function Landing() {
+  let tl = new TimelineLite({ delay: 0.8 });
   let app = useRef(null);
   let images = useRef(null);
   let content = useRef(null);
-  let tl = new TimelineLite({ delay: 0.8 });
+
   const history = useHistory();
+
   function clickNavigate() {
     history.push("/home");
   }
 
   useEffect(() => {
     // Images Vars
-    const image1 = images.children[0];
+    const image1 = images.children[0]; // or children[0]
     const image2 = images.children[1];
     const image3 = images.children[2];
 
@@ -35,27 +36,27 @@ function Landing() {
     TweenMax.to(app, 0, { css: { visibility: "visible" } });
 
     //Images Animation
-    tl.from(image1, 1.2, { y: 1000, ease: Power3.easeOut }, "Start")
+    tl.from(image1, 1.3, { y: 1000, ease: Power3.easeOut }, "Start")
       .from(image1.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 0.2)
-      .from(image2, 1.2, { y: 900, ease: Power3.easeOut }, 1.3)
+      .from(image2, 1.5, { y: 900, ease: Power3.easeOut }, 1.3)
       .from(image2.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 1.5)
-      .from(image3, 1.3, { y: 900, ease: Power3.easeOut }, 2.6)
-      .from(image3.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 2.86);
+      .from(image3, 1.5, { y: 900, ease: Power3.easeOut }, 2.4)
+      .from(image3.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 2.6);
 
     //Content Animation
     tl.staggerFrom(
       [headlineFirst.children, headlineSecond.children, headlineThird.children],
-      1.2,
+      1,
       {
         y: 44,
         ease: Power3.easeOut,
-        delay: 0,
+        delay: 0.85,
       },
-      1.45,
+      1.25,
       "Start"
     )
-      .from(contentP, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.2)
-      .from(contentButton, 3.5, { y: 20, opacity: 0, ease: Power3.easeOut }, 5.2);
+      .from(contentP, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6)
+      .from(contentButton, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 5.2);
   }, [tl]);
 
   return (
@@ -81,9 +82,9 @@ function Landing() {
                 your mind. Why not give it a like? By doing so, usefull tips stand out more!
               </p>
               <div className="btn-row">
-                <a onClick={() => clickNavigate()}>
+                <a alt="button" onClick={() => clickNavigate()}>
                   <span>Explore</span>
-                  <div class="liquid"></div>
+                  <div className="liquid"></div>
                 </a>
               </div>
             </div>
