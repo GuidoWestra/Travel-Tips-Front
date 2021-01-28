@@ -49,3 +49,44 @@
   font-weight: normal;
   transition: all 0.2s ease-in-out;
 }
+
+body.modal-open .page-box {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -o-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+}
+
+.upload-container {
+  padding: 20px 20px 20px 20px;
+  -webkit-animation-name: modal-animation;
+  -webkit-animation-duration: 0.5s;
+  animation-name: modal-animation;
+  animation-duration: 0.5s;
+}
+
+.uploadForm {
+  vertical-align: middle;
+  margin: 1% 10% 1% 15%;
+}
+
+input[type="file"] {
+  background: white;
+  padding: 0.5;
+}
+
+::-webkit-file-upload-button {
+  padding: 7px;
+  border-radius: 5%;
+  border: none;
+  text-align: center;
+  color: white;
+  cursor: pointer;
+  background-color: gray;
+}
+
+.preview-image-avatar {
+  margin: auto;
+  align-items: center;
+}

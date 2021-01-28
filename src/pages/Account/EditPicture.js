@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 import { Col } from "react-bootstrap";
 import { CLOUDINARY_URL } from "../../config/constants";
 import { updateUser } from "../../store/user/actions";
 import { useDispatch } from "react-redux";
+import "./AccountIndex.scss";
 
 export default function EditPicture() {
   const [fileInput, setFileInput] = useState("");
   const [preview, setPreview] = useState("");
   const [photoLink, setPhotoLink] = useState("");
+  const [uploadLoading, setUploadLoading] = useState("");
 
   const uploadImage = async (fileInput) => {
     try {
@@ -41,6 +44,7 @@ export default function EditPicture() {
   function submitImage(event) {
     event.preventDefault();
     uploadImage(fileInput);
+    setUploadLoading("Loading...");
   }
 
   const handleFileInputChange = (e) => {
@@ -58,38 +62,49 @@ export default function EditPicture() {
 
   return (
     <div>
-      <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
-        <Form.Group>
-          <br />
+      <div className="upload-container">
+        <Form as={Col} className="uploadForm">
           <input
             type="file"
-            class="form-control"
             id="customFile"
-            label="Example file input"
             name="image"
             onChange={handleFileInputChange}
             className="from-input"
           />
-        </Form.Group>
-        <div>
-          {preview && (
-            <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
-          )}
-        </div>
-        <br />
-        <div style={{ padding: "10px" }}>
-          {preview && !photoLink ? (
-            <Button variant="dark" type="submit" onClick={submitImage}>
-              Choose this picture
-            </Button>
-          ) : null}
-          {photoLink ? (
-            <Button variant="success" type="submit" onClick={persistImage}>
-              Save Change
-            </Button>
-          ) : null}
-        </div>
-      </Form>
+
+          <Form.Group as={Col} className="uploadForm">
+            {preview && (
+              <img
+                src={preview}
+                alt="chosen"
+                style={{ height: "300px" }}
+                className="preview-image-avatar"
+              ></img>
+            )}
+          </Form.Group>
+
+          <Form.Group as={Col} className="uploadForm">
+            {preview && !photoLink ? (
+              <>
+                {uploadLoading ? (
+                  <Spinner animation="border" variant="dark" />
+                ) : (
+                  <>
+                    <Button variant="dark" type="submit" onClick={submitImage}>
+                      Choose photo
+                    </Button>
+                  </>
+                )}
+              </>
+            ) : null}
+            {photoLink ? (
+              <Button variant="success" type="submit" onClick={persistImage}>
+                Save Change
+              </Button>
+            ) : null}
+          </Form.Group>
+        </Form>
+      </div>
     </div>
   );
 }
