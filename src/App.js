@@ -13,6 +13,7 @@ import { getUserWithStoredToken } from "./store/user/actions";
 // import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
+import Landing from "./pages/Landing";
 import Account from "./pages/Account";
 import Details from "./pages/Details";
 import PlaceForm from "./pages/PlaceForm";
@@ -28,12 +29,13 @@ function App() {
 
   return (
     <div>
-      {location.pathname === "/login" ? null : <Navigation />}
+      {location.pathname === "/login" || location.pathname === "/" ? null : <Navigation />}
       <MessageBox />
       {isLoading ? <Loading /> : null}
 
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/home" component={Home} />
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
