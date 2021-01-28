@@ -15,7 +15,7 @@ html {
   width: 100vh;
   .container {
     width: 1800px;
-    min-width: 2000px;
+    min-width: 100vw;
     margin: 0 auto;
     .hero-inner {
       display: flex;
@@ -79,7 +79,7 @@ html {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: #066de4;
+                background: linear-gradient(to right, #29a0e6, #0347da);
                 height: 48px;
                 width: 48px;
                 border-radius: 100px;
@@ -100,9 +100,9 @@ html {
             position: absolute;
             overflow: hidden;
             &.place1 {
-              top: 1vw;
-              right: 4vw;
-              width: 45%;
+              top: 1.5vh;
+              right: 2vw;
+              width: 30vw;
               height: 30%;
             }
             &.place2 {
@@ -114,8 +114,8 @@ html {
             &.place3 {
               bottom: -15vh;
               left: 30vw;
-              width: 30vw;
-              height: 70%;
+              width: 29vw;
+              height: 60%;
             }
             img {
               position: absolute;
