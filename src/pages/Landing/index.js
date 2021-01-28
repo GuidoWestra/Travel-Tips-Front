@@ -84,7 +84,7 @@ function Landing() {
                 <button className="explore-button">
                   Explore
                   <div className="arrow-icon">
-                    <img src={arrow} alt="row" onClick={clickNavigate} />
+                    <img src={arrow} alt="row" onClick={() => clickNavigate()} />
                   </div>
                 </button>
               </div>
