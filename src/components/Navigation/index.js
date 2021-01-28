@@ -19,6 +19,7 @@ export default function Navigation() {
       <Navbar.Brand className="logof" as={NavLink} to="/">
         Travel.Tips
       </Navbar.Brand>
+
       <label className="somelabel" aria-hidden="true" for="toggle">
         <i className="fas fa-bars"></i>
       </label>
@@ -80,5 +81,6 @@ export default function Navigation() {
         )}
       </ul>
     </nav>
+
   );
 }
