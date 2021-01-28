@@ -1,10 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Overlay({
-  handleClickSignUpButton,
-  handleClickSignInButton,
-}) {
+export default function Overlay({ handleClickSignUpButton, handleClickSignInButton }) {
   return (
     <div className="overlay-container">
       <div className="overlay">
@@ -15,16 +12,12 @@ export default function Overlay({
             <br />
             <br />
             <span>
-              <Link style={{ color: "white" }} to="/">
+              <Link style={{ color: "white" }} to="/home">
                 back to home page
               </Link>
             </span>
           </p>
-          <button
-            className="ghost form-button"
-            id="signIn"
-            onClick={handleClickSignInButton}
-          >
+          <button className="ghost form-button" id="signIn" onClick={handleClickSignInButton}>
             Log In
           </button>
         </div>
@@ -35,16 +28,12 @@ export default function Overlay({
             <br />
             <br />
             <span>
-              <Link style={{ color: "white" }} to="/">
+              <Link style={{ color: "white" }} to="/home">
                 back to home page
               </Link>
             </span>
           </p>
-          <button
-            className="ghost form-button"
-            id="signUp"
-            onClick={handleClickSignUpButton}
-          >
+          <button className="ghost form-button" id="signUp" onClick={handleClickSignUpButton}>
             Sign Up
           </button>
         </div>
