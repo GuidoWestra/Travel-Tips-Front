@@ -121,7 +121,7 @@ export default function SignUp() {
         <Row style={{ marginTop: "20px" }}>
           <Col style={{ textAlign: "left" }}>
             <Form.Group>
-              <Form.Label for="customFile">Upload Image</Form.Label>
+              <Form.Label htmlFor="customFile">Upload Image</Form.Label>
 
               <input
                 style={{
@@ -137,11 +137,7 @@ export default function SignUp() {
               />
             </Form.Group>
             {preview && !photoLink ? (
-              <button
-                className="form-button-pic"
-                type="submit"
-                onClick={submitImage}
-              >
+              <button className="form-button-pic" type="submit" onClick={submitImage}>
                 Choose this picture
               </button>
             ) : null}
