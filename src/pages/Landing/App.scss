@@ -92,7 +92,7 @@ html {
         }
       }
       .hero-images {
-        width: 50%;
+        width: 100vw;
         height: 100vh;
         position: relative;
         .hero-images-inner {
@@ -100,22 +100,22 @@ html {
             position: absolute;
             overflow: hidden;
             &.place1 {
-              top: 20px;
-              right: 75px;
+              top: 1vw;
+              right: 4vw;
               width: 45%;
               height: 30%;
             }
             &.place2 {
-              bottom: 24px;
-              left: -100px;
-              width: 50%;
-              height: 75%;
+              bottom: 15vh;
+              left: 0vw;
+              width: 25vw;
+              height: 70%;
             }
             &.place3 {
-              bottom: -120px;
-              left: 420px;
-              width: 49%;
-              height: 65%;
+              bottom: -15vh;
+              left: 30vw;
+              width: 30vw;
+              height: 70%;
             }
             img {
               position: absolute;
