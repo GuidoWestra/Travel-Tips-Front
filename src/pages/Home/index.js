@@ -16,7 +16,6 @@ export default function Home() {
   const history = useHistory();
   const [open, set_open] = useState(false);
   function navigate() {
-    console.log("click");
     history.push("/placeform");
   }
 
@@ -30,7 +29,6 @@ export default function Home() {
     } else return null;
   }
   const listOfPlaces = search();
-  console.log("list of place", places);
 
   useEffect(() => {
     dispatch(fetchPlaces());

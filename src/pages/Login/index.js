@@ -20,7 +20,6 @@ export default function SignUp() {
   }, [token, history]);
 
   function submitForm(event) {
-    console.log("hi");
     event.preventDefault();
 
     dispatch(login(email, password));
@@ -49,6 +48,7 @@ export default function SignUp() {
             onChange={(event) => setEmail(event.target.value)}
             type="email"
             placeholder="Enter email"
+            autoComplete="username"
             required
           />
         </Form.Group>
@@ -57,8 +57,9 @@ export default function SignUp() {
           <input
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type="password"
+            type="current-password"
             placeholder="Password"
+            autoComplete="current-password"
             required
           />
         </Form.Group>

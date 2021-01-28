@@ -16,12 +16,8 @@ export default function LoginForm() {
 
   const handleClickSignInButton = () => set_rightPanelActive(false);
 
-  console.log(rightPanelActive);
   return (
-    <div
-      className={`container ${rightPanelActive ? `right-panel-active` : ``}`}
-      id="container"
-    >
+    <div className={`container ${rightPanelActive ? `right-panel-active` : ``}`} id="container">
       <SignUp />
       <Login />
       <Overlay

@@ -4,21 +4,13 @@ import { useHistory } from "react-router-dom";
 
 export default function PlaceCard(props) {
   const history = useHistory();
-  console.log("Hi", props);
-  // props ? props.map((date, i) => {
-  // return date.createdAt;
-  // }): null
-  // }
-  // console.log(date);
-  const today = new Date().toISOString().split("T")[0];
-  console.log("hi", today);
+
   function onClickHandler(city) {
     history.push(`/details/${city.id}`);
   }
   return (
     <div>
       {props.data.map((city, i) => {
-        console.log("I am date", city.createdAt);
         return (
           <Card
             key={i}

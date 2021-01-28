@@ -34,15 +34,15 @@ export default function Details() {
     <>
       <Container style={{ marginTop: "32px", padding: "64px" }}>
         <DetailsCard data={placeData} />
-        <div class="bg-light p-4 d-flex justify-content-end text-center">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item">
-              <h5 class="font-weight-bold mb-0 d-block">
+        <div className="bg-light p-4 d-flex justify-content-end text-center">
+          <ul className="list-inline mb-0">
+            <li className="list-inline-item">
+              <h5 className="font-weight-bold mb-0 d-block">
                 {sortedTips ? sortedTips.length : "0"}
               </h5>
-              <small class="text-muted">
+              <small className="text-muted">
                 {" "}
-                <i class="fa fa-user-circle-o mr-1"></i>Tips
+                <i className="fa fa-user-circle-o mr-1"></i>Tips
               </small>
             </li>
           </ul>
