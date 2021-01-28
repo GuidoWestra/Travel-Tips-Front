@@ -20,7 +20,7 @@ export default function Navigation() {
         Travel.Tips
       </Navbar.Brand>
 
-      <label className="somelabel" aria-hidden="true" for="toggle">
+      <label className="somelabel" aria-hidden="true" htmlFor="toggle">
         <i className="fas fa-bars"></i>
       </label>
 
@@ -81,6 +81,5 @@ export default function Navigation() {
         )}
       </ul>
     </nav>
-
   );
 }
