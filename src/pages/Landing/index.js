@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "./App.scss";
 import { TimelineLite, TweenMax, Power3 } from "gsap";
 
-import img1 from "./images/place4.jpg";
+import img1 from "./images/place2.jpg";
 import img2 from "./images/place5.jpg";
 import img3 from "./images/place6.jpg";
 import arrow from "./images/arrow-right.svg";
