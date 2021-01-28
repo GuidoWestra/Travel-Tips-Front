@@ -29,25 +29,24 @@ export default function Account() {
     : user.photo;
 
   return (
-    <div className="pageContainer">
-      <div>
+    <div class="page-box">
+      <div class="page-container">
         <div class="bg-white shadow rounded overflow-hidden">
-          <div class="px-4 pt-0 pb-4 bg-dark">
+          <div class="profile-background">
             <div class="media align-items-end profile-header">
               <div class="profile mr-3">
                 <img
                   src={profilePictureCheck}
                   alt="profile pic"
                   width="230"
-                  height="200"
-                  class="rounded mb-2 img-thumbnail"
+                  class="avatar-image"
                 />
-                <Button
-                  className="btn btn-dark btn-sm btn-block"
+
+                <img
+                  class="avatar-edit"
+                  src="http://res.cloudinary.com/dxtq8ajzg/image/upload/v1611842718/c1usvvykbz8kgpjr6z3n.png"
                   onClick={handleShow}
-                >
-                  Edit Picture
-                </Button>
+                />
                 <Modal
                   show={show}
                   onHide={handleClose}
