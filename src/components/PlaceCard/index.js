@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 export default function PlaceCard(props) {
@@ -23,11 +23,21 @@ export default function PlaceCard(props) {
           >
             <Card.Img variant="top" src={city.photo} />
             <Card.Body>
-              <Card.Title>{city.name}</Card.Title>
-              <Card.Text>{city.description}</Card.Text>
-              <Button onClick={() => onClickHandler(city)} variant="dark">
-                Learn More!
-              </Button>
+              <ListGroup className="list-group-flush">
+                <Card.Title style={{ paddingLeft: 18 }}>{city.name}</Card.Title>
+                <ListGroupItem>
+                  <Card.Text>{city.description}</Card.Text>
+                </ListGroupItem>
+                <p style={{ marginLeft: 18 }}>{city.createdAt}</p>
+                <br />
+                <Button
+                  style={{ marginLeft: 18 }}
+                  onClick={() => onClickHandler(city)}
+                  variant="dark"
+                >
+                  Learn More!
+                </Button>
+              </ListGroup>
             </Card.Body>
           </Card>
         );

@@ -57,7 +57,7 @@ function Landing() {
     )
       .from(contentP, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6)
       .from(contentButton, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 5.2);
-  }, [tl]);
+  });
 
   return (
     <div className="hero" ref={(el) => (app = el)}>
@@ -82,7 +82,7 @@ function Landing() {
                 your mind. Why not give it a like? By doing so, usefull tips stand out more!
               </p>
               <div className="btn-row">
-                <a alt="button" onClick={() => clickNavigate()}>
+                <a href="/home" alt="button" onClick={() => clickNavigate()}>
                   <span>Explore</span>
                   <div className="liquid"></div>
                 </a>
