@@ -8,7 +8,77 @@ html {
       Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
 }
+a {
+  position: relative;
+  padding: 20px 34px;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 34px;
+}
 
+a span {
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+  font-family: "Poppins";
+  letter-spacing: 8px;
+  z-index: 1;
+}
+
+a .liquid {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgb(255, 255, 255);
+  transition: 0.9s;
+}
+
+a .liquid::after,
+a .liquid::before {
+  content: "";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 80;
+  left: 60%;
+  transform: translate(-50%, -75%);
+  background: rgb(255, 255, 255);
+}
+
+a .liquid::before {
+  border-radius: 255%;
+  background: rgb(255, 255, 255);
+  animation: animate 10s linear infinite;
+}
+
+a .liquid::after {
+  border-radius: 30%;
+  background: rgba(226, 228, 233, 0.5);
+  animation: animate 10s linear infinite;
+}
+
+a:hover .liquid {
+  top: -110px;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-40%, -75%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -75%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-60%, -75%) rotate(360deg);
+  }
+}
+//LandingPage
 .hero {
   visibility: hidden;
   height: 100vh;

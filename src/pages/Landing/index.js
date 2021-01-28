@@ -54,8 +54,8 @@ function Landing() {
       1.45,
       "Start"
     )
-      .from(contentP, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6)
-      .from(contentButton, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6);
+      .from(contentP, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.2)
+      .from(contentButton, 3.5, { y: 20, opacity: 0, ease: Power3.easeOut }, 5.2);
   }, [tl]);
 
   return (
@@ -81,12 +81,10 @@ function Landing() {
                 your mind. Why not give it a like? By doing so, usefull tips stand out more!
               </p>
               <div className="btn-row">
-                <button className="explore-button">
-                  Explore
-                  <div className="arrow-icon">
-                    <img src={arrow} alt="row" onClick={() => clickNavigate()} />
-                  </div>
-                </button>
+                <a onClick={() => clickNavigate()}>
+                  <span>Explore</span>
+                  <div class="liquid"></div>
+                </a>
               </div>
             </div>
           </div>
