@@ -19,7 +19,7 @@ export default function Account() {
     dispatch(fetchTipsForUser());
   }, [dispatch]);
   const tips = useSelector(selectTipsForPlace);
-  console.log(`tips from component`, tips);
+  // console.log(`tips from component`, tips);
   const onClickEditPhoto = () => {
     if (editMode === false) {
       setEditMode(true);

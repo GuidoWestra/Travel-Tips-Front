@@ -60,17 +60,27 @@ export default function PlaceForm() {
     event.preventDefault();
     if (!placeName || !placeDescription || !placeCity)
       return dispatch(
-        showMessageWithTimeout("danger", true, "Please provide a name, city and description")
+        showMessageWithTimeout(
+          "danger",
+          true,
+          "Please provide a name, city and description"
+        )
       );
     dispatch(postPlace(placeName, placeDescription, placeCity, photoLink));
   }
 
   useEffect(() => {
     if (token === null) {
-      dispatch(showMessageWithTimeout("danger", true, "Please login to create new places!"));
+      dispatch(
+        showMessageWithTimeout(
+          "danger",
+          true,
+          "Please login to create new places!"
+        )
+      );
       history.push("/");
     }
-  }, [token, history]);
+  }, [token, history, dispatch]);
   return (
     <div style={{ maxWidth: "40%", marginLeft: "30%", marginTop: "5%" }}>
       <Form>
@@ -112,13 +122,16 @@ export default function PlaceForm() {
             class="form-control"
             id="customFile"
             label="Example file input"
-            type="file"
             name="image"
             onChange={handleFileInputChange}
             className="from-input"
           />
         </Form.Group>
-        <div>{preview && <img src={preview} alt="chosen" style={{ height: "300px" }}></img>}</div>
+        <div>
+          {preview && (
+            <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
+          )}
+        </div>
         <br />
         {preview ? (
           <Button variant="dark" type="submit" onClick={submitImage}>

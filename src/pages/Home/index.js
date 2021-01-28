@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Button, FormControl, InputGroup, Jumbotron } from "react-bootstrap";
+import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
 import CarouSel from "../../components/CarouSel";
@@ -47,7 +47,11 @@ export default function Home() {
       </InputGroup>
       {criteria ? <PlaceCard data={listOfPlaces} /> : <CarouSel />}
       {criteria && listOfPlaces.length === 0 ? (
-        <Button style={{ marginLeft: "43%" }} variant="dark" onClick={() => navigate()}>
+        <Button
+          style={{ marginLeft: "43%" }}
+          variant="dark"
+          onClick={() => navigate()}
+        >
           Add a new place
         </Button>
       ) : null}
