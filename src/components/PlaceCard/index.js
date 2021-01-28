@@ -28,7 +28,7 @@ export default function PlaceCard(props) {
                 <ListGroupItem>
                   <Card.Text>{city.description}</Card.Text>
                 </ListGroupItem>
-                <p style={{ marginLeft: 18 }}>{city.createdAt}</p>
+                <p style={{ marginLeft: 18, marginTop: 8 }}>{city.createdAt}</p>
                 <br />
                 <Button
                   style={{ marginLeft: 18 }}
