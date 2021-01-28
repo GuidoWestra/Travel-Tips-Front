@@ -2,6 +2,11 @@
   transform: translateY(5rem);
 }
 
+.pageContainer {
+  width: 80%;
+  align-items: center;
+}
+
 /* body {
   background: #654ea3;
   background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
