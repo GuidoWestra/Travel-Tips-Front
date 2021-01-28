@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import { Col } from "react-bootstrap";
 import { CLOUDINARY_URL } from "../../config/constants";
@@ -58,7 +57,7 @@ export default function EditPicture() {
   }
 
   return (
-    <Container>
+    <div>
       <Form as={Col} md={{ span: 6, offset: 3 }} className="mt-5">
         <Form.Group>
           <br />
@@ -91,6 +90,6 @@ export default function EditPicture() {
           ) : null}
         </div>
       </Form>
-    </Container>
+    </div>
   );
 }

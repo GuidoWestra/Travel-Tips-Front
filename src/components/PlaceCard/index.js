@@ -17,7 +17,7 @@ export default function PlaceCard(props) {
             key={i}
             style={{
               marginLeft: "30%",
-              width: "40%",
+
               marginTop: 20,
             }}
           >
