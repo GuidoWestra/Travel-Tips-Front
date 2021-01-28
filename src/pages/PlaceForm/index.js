@@ -7,7 +7,6 @@ import { showMessageWithTimeout } from "../../store/appState/actions";
 import { postPlace } from "../../store/places/actions";
 import { selectToken } from "../../store/user/selectors";
 
-// name description city photo need help from fabiana
 export default function PlaceForm() {
   const [placeName, set_placeName] = useState("");
   const [placeDescription, set_placeDescription] = useState("");
@@ -60,29 +59,19 @@ export default function PlaceForm() {
     event.preventDefault();
     if (!placeName || !placeDescription || !placeCity)
       return dispatch(
-        showMessageWithTimeout(
-          "danger",
-          true,
-          "Please provide a name, city and description"
-        )
+        showMessageWithTimeout("danger", true, "Please provide a name, city and description")
       );
     dispatch(postPlace(placeName, placeDescription, placeCity, photoLink));
   }
 
   useEffect(() => {
     if (token === null) {
-      dispatch(
-        showMessageWithTimeout(
-          "danger",
-          true,
-          "Please login to create new places!"
-        )
-      );
+      dispatch(showMessageWithTimeout("danger", true, "Please login to create new places!"));
       history.push("/");
     }
   }, [token, history, dispatch]);
   return (
-    <div style={{ maxWidth: "40%", marginLeft: "30%", marginTop: "5%" }}>
+    <div style={{ mindWidth: "40%", maxWidth: "40%", marginLeft: "30%", marginTop: "5%" }}>
       <Form>
         <Form.Group>
           <Form.Label>Name</Form.Label>
@@ -127,11 +116,7 @@ export default function PlaceForm() {
             className="from-input"
           />
         </Form.Group>
-        <div>
-          {preview && (
-            <img src={preview} alt="chosen" style={{ height: "300px" }}></img>
-          )}
-        </div>
+        <div>{preview && <img src={preview} alt="chosen" style={{ height: "300px" }}></img>}</div>
         <br />
         {preview ? (
           <Button variant="dark" type="submit" onClick={submitImage}>

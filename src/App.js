@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div>
-      {location.pathname === "/login" || location.pathname === "/" ? null : <Navigation />}
+      {location.pathname === "/" || location.pathname === "/login" ? null : <Navigation />}
       <MessageBox />
       {isLoading ? <Loading /> : null}
 
