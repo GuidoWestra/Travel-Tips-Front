@@ -6,7 +6,7 @@ import { fetchTipsForUser } from "../../store/tips/actions";
 import { selectTipsForPlace } from "../../store/tips/selectors";
 import Modal from "react-bootstrap/Modal";
 
-import "./index.css";
+import "./AccountIndex.scss";
 import EditPicture from "./EditPicture";
 import { Container } from "react-bootstrap";
 
@@ -56,10 +56,8 @@ export default function Account() {
                     autoFocus
                     animation
                     size="lg"
-                    shadow
                     rounded
                     centered
-                    justify-content-md-center
                   >
                     <Modal.Header closeButton>
                       <Modal.Title>Upload New Picture</Modal.Title>
