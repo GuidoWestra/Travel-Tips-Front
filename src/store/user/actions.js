@@ -51,10 +51,10 @@ export const signUp = (name, email, password, photoLink) => {
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
-        dispatch(setMessage("danger", true, error.response.data.message));
+        dispatch(setMessage("danger", true, "please fill all fields"));
       } else {
         console.log(error.message);
-        dispatch(setMessage("danger", true, error.message));
+        dispatch(setMessage("danger", true, "error.message"));
       }
       dispatch(appDoneLoading());
     }

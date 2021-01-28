@@ -67,7 +67,6 @@ export default function EditPicture() {
             class="form-control"
             id="customFile"
             label="Example file input"
-            type="file"
             name="image"
             onChange={handleFileInputChange}
             className="from-input"
