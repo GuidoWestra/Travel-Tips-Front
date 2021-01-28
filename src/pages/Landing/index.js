@@ -51,11 +51,11 @@ function Landing() {
         ease: Power3.easeOut,
         delay: 0,
       },
-      1.5,
+      1.45,
       "Start"
     )
       .from(contentP, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6)
-      .from(contentButton, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 6.2);
+      .from(contentButton, 1.4, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6);
   }, [tl]);
 
   return (
