@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import PlaceCard from "../../components/PlaceCard";
 import cx from "classnames";
@@ -87,9 +86,7 @@ export default function Home() {
           ) : null}
         </Col>
         <Col xs={12} md={8}>
-          {criteria || places ? (
-            <PlaceCard data={listOfPlaces ? listOfPlaces : places} />
-          ) : null}
+          {criteria || places ? <PlaceCard data={listOfPlaces ? listOfPlaces : places} /> : null}
         </Col>
       </Row>
     </div>

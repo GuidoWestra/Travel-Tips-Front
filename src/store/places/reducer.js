@@ -3,7 +3,7 @@ const initialState = {
   place: null,
 };
 
-export default (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "places/fetched":
       return { ...state, places: action.payload };
@@ -12,4 +12,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
