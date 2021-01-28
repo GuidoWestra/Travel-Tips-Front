@@ -73,22 +73,17 @@ body.modal-open .page-box {
 
 input[type="file"] {
   background: white;
-  width: auto;
-  border: 1px solid #29a0e6;
-  margin: 5%;
+  padding: 0.5;
 }
 
 ::-webkit-file-upload-button {
-  padding: 10px;
+  padding: 7px;
   border-radius: 5%;
   border: none;
   text-align: center;
   color: white;
-  background: white;
-  background: -webkit-linear-gradient(to right, #e2e3e5, #31bbe6);
-  background: linear-gradient(to right, #29a0e6, #0347da);
   cursor: pointer;
-  background-color: white;
+  background-color: gray;
 }
 
 .preview-image-avatar {
