@@ -25,7 +25,7 @@ export default function Account() {
   const handleShow = () => setShow(true);
 
   const profilePictureCheck = !user.photo
-    ? "http://res.cloudinary.com/dxtq8ajzg/image/upload/v1611749197/unqla8crrv5lzffchfnr.png"
+    ? "http://res.cloudinary.com/dxtq8ajzg/image/upload/v1611843272/kgw4ws43kcf7xulierrh.png"
     : user.photo;
 
   return (
