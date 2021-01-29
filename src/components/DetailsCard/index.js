@@ -9,12 +9,8 @@ export default function DetailsCard(props) {
   if (place)
     return (
       <div>
-        <Card
-        // style={{
-        //   width: 500,
-        // }}
-        >
-          <Card.Img variant="top" src={place.photo} />
+        <Card>
+          <Card.Img src={place.photo} />
           <Card.Body>
             <Card.Title>{place.name}</Card.Title>
             <Card.Text>{place.description}</Card.Text>

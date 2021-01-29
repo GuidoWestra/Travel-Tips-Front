@@ -33,7 +33,11 @@ export default function Details() {
   }, [dispatch, placeId]);
   return (
     <>
-      <div style={{ margin: "5%" }}>
+      <div
+        style={{
+          margin: "3% 5% 5% 5%",
+        }}
+      >
         <DetailsCard data={placeData} />
         <div className="bg-light p-4 d-flex justify-content-end text-center">
           <ul className="list-inline mb-0">
