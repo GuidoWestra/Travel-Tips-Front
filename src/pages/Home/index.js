@@ -23,6 +23,7 @@ export default function Home() {
   function navigate() {
     if (!token) {
       dispatch(showMessageWithTimeout("danger", true, "Please login to create new places!"));
+      setCriteria("");
       return;
     }
     history.push("/placeform");
