@@ -12,6 +12,7 @@ import { selectToken } from "../../store/user/selectors";
 import { selectPlace } from "../../store/places/selectors";
 import { Link } from "react-router-dom";
 import { fetchSinglePlace } from "../../store/places/actions";
+import "./index.css";
 
 export default function Details() {
   const place = useParams();
@@ -32,7 +33,7 @@ export default function Details() {
   }, [dispatch, placeId]);
   return (
     <>
-      <Container style={{ marginTop: "32px", padding: "64px" }}>
+      <div style={{ margin: "5%" }}>
         <DetailsCard data={placeData} />
         <div className="bg-light p-4 d-flex justify-content-end text-center">
           <ul className="list-inline mb-0">
@@ -50,12 +51,15 @@ export default function Details() {
         {token ? (
           <TipForm placeId={placeId} />
         ) : (
-          <p>
-            <Link to="/login">Log in</Link> to add a tip!
-          </p>
+          <>
+            <Link className="login-link" to="/login">
+              Log in
+            </Link>{" "}
+            to add a tip!
+          </>
         )}
         <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
-      </Container>
+      </div>
     </>
   );
 }
