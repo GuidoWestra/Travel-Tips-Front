@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import { useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import "./nav.css";
 import { useDispatch } from "react-redux";
@@ -13,6 +14,7 @@ export default function Navigation() {
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
 
   return (
     <nav className="navigation">
@@ -67,7 +69,10 @@ export default function Navigation() {
             <li
               style={{ cursor: "pointer" }}
               className="link"
-              onClick={() => dispatch(logOut())}
+              onClick={() => {
+                dispatch(logOut());
+                history.push("/");
+              }}
             >
               Logout
             </li>

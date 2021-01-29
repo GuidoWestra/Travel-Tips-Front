@@ -79,7 +79,9 @@ export const postPlace = (name, description, city, photoUrl) => {
         showMessageWithTimeout(
           "success",
           false,
+
           `${name} succes fully created`,
+
           1500
         )
       );

@@ -1,5 +1,5 @@
 import axios from "axios";
-// import { selectToken } from "../user/selectors";
+import { selectPlace } from "../places/selectors";
 import { apiUrl } from "../../config/constants";
 import { selectToken } from "../user/selectors";
 import { showMessageWithTimeout } from "../appState/actions";
@@ -25,6 +25,8 @@ export const fetchTipsForPlace = (id) => {
 export const addTip = (placeId, text) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
+    const placeName = selectPlace(getState());
+
     try {
       await axios.post(
         `${apiUrl}/tips`,
@@ -39,7 +41,9 @@ export const addTip = (placeId, text) => {
     } catch (e) {
       console.log(e.message);
     }
-    showMessageWithTimeout("info", false, "Tip added!"); //doesn't work
+    dispatch(
+      showMessageWithTimeout("success", true, `Your new tip has been added for ${placeName.name}!`)
+    );
     dispatch(fetchTipsForPlace(placeId));
   };
 };
@@ -55,7 +59,7 @@ export const deleteTip = (id, placeId) => {
     } catch (e) {
       console.log(e.message);
     }
-    showMessageWithTimeout("info", false, "Tip deleted!"); //doesn't work
+    dispatch(showMessageWithTimeout("danger", true, `Your tip was deleted!`));
     dispatch(fetchTipsForUser());
   };
 };

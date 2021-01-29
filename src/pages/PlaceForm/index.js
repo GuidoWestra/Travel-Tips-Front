@@ -74,6 +74,7 @@ export default function PlaceForm() {
 
   useEffect(() => {
     if (token === null) {
+
       dispatch(
         showMessageWithTimeout(
           "danger",
@@ -82,6 +83,7 @@ export default function PlaceForm() {
         )
       );
       history.push("/login");
+
     }
     if (newPlace) history.push(`/details/${newPlace.id}`);
     console.log(`i am inside of a component`, newPlace);
