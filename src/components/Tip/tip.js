@@ -42,7 +42,7 @@ export default function Tip({ data, placeId }) {
             <div class="p-4 bg-light rounded shadow-sm mb-3">
               <Row>
                 {location.pathname !== "/Account" ? (
-                  <Col class="col-6 col-md-4">
+                  <Col>
                     <img
                       style={{
                         width: "100px",
@@ -54,7 +54,7 @@ export default function Tip({ data, placeId }) {
                     />
                   </Col>
                 ) : null}
-                <Col class="col-12 col-md-8">
+                <Col>
                   <h6 class="font-weight-bold text-uppercase">{line}</h6>{" "}
                   <p class="font-weight-light">{c.text}</p>
                   <ul class="list-inline small text-muted mt-3 mb-0">
