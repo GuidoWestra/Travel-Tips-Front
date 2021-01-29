@@ -1,6 +1,10 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
-import { appDoneLoading, appLoading, showMessageWithTimeout } from "../appState/actions";
+import {
+  appDoneLoading,
+  appLoading,
+  showMessageWithTimeout,
+} from "../appState/actions";
 import { selectToken } from "../user/selectors";
 
 //set all places
@@ -69,9 +73,16 @@ export const postPlace = (name, description, city, photoUrl) => {
           },
         }
       );
-      console.log(result);
+      dispatch(setPlace(result.data.data));
       dispatch(appDoneLoading());
-      dispatch(showMessageWithTimeout("success", false, `${name} succes fully created`, 1500));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          false,
+          `${name} succes fully created`,
+          1500
+        )
+      );
     } catch (e) {
       console.log(e);
     }
