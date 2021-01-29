@@ -73,13 +73,15 @@ export const postPlace = (name, description, city, photoUrl) => {
           },
         }
       );
-      console.log(result);
+      dispatch(setPlace(result.data.data));
       dispatch(appDoneLoading());
       dispatch(
         showMessageWithTimeout(
           "success",
           false,
-          `${name} succesfully created`,
+
+          `${name} succes fully created`,
+
           1500
         )
       );
