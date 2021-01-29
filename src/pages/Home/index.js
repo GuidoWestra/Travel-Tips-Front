@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { showMessageWithTimeout } from "../../store/appState/actions";
+
 import PlaceCard from "../../components/PlaceCard";
 import cx from "classnames";
 import { Col, Row } from "react-bootstrap";
@@ -8,6 +10,7 @@ import { fetchPlaces } from "../../store/places/actions";
 import { selectPlaces } from "../../store/places/selectors";
 import { useHistory } from "react-router-dom";
 import "./index.css";
+import { selectToken } from "../../store/user/selectors";
 
 export default function Home() {
   const [criteria, setCriteria] = useState("");
@@ -15,7 +18,14 @@ export default function Home() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [open, set_open] = useState(false);
+  const token = useSelector(selectToken);
+
   function navigate() {
+    if (!token) {
+      dispatch(showMessageWithTimeout("danger", true, "Please login to create new places!"));
+      setCriteria("");
+      return;
+    }
     history.push("/placeform");
   }
 
