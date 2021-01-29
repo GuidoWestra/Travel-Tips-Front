@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTipsForPlace } from "../../store/tips/selectors";
 import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard";
-import { Container } from "react-bootstrap";
+
 import { selectToken } from "../../store/user/selectors";
 import { selectPlace } from "../../store/places/selectors";
 import { Link } from "react-router-dom";
@@ -55,12 +55,11 @@ export default function Details() {
         {token ? (
           <TipForm placeId={placeId} />
         ) : (
-          <>
+          <p style={{ marginTop: "30px" }}>
             <Link className="login-link" to="/login">
-              Log in
-            </Link>{" "}
-            to add a tip!
-          </>
+              Log in to add a tip!
+            </Link>
+          </p>
         )}
         <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
       </div>
