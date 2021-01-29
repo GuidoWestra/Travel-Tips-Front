@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import img1 from "./images/place2.jpg";
 import img2 from "./images/place5.jpg";
 import img3 from "./images/place6.jpg";
+import img4 from "./images/place7.jpg";
 
 function Landing() {
   let tl = new TimelineLite({ delay: 0.8 });
@@ -24,6 +25,7 @@ function Landing() {
     const image1 = images.children[0]; // or children[0]
     const image2 = images.children[1];
     const image3 = images.children[2];
+    const image4 = images.children[3];
 
     //content vars
     const headlineFirst = content.children[0].children[0];
@@ -36,12 +38,14 @@ function Landing() {
     TweenMax.to(app, 0, { css: { visibility: "visible" } });
 
     //Images Animation
-    tl.from(image1, 1.3, { y: 1000, ease: Power3.easeOut }, "Start")
-      .from(image1.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 0.2)
-      .from(image2, 1.5, { y: 900, ease: Power3.easeOut }, 1.3)
-      .from(image2.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 1.5)
-      .from(image3, 1.5, { y: 900, ease: Power3.easeOut }, 2.4)
-      .from(image3.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 2.6);
+    tl.from(image1, 1.5, { y: 1200, ease: Power3.easeOut }, "Start")
+      .from(image1.firstElementChild, 2, { scale: 1.3, ease: Power3.easeOut }, 0.3)
+      .from(image2, 1.5, { y: 1200, ease: Power3.easeOut }, 0.4)
+      .from(image2.firstElementChild, 2.5, { scale: 1.3, ease: Power3.easeOut }, 0.6)
+      .from(image3, 1.5, { y: 1200, ease: Power3.easeOut }, 0.7)
+      .from(image3.firstElementChild, 3, { scale: 1.3, ease: Power3.easeOut }, 0.9)
+      .from(image4, 1.5, { y: 1200, ease: Power3.easeOut }, 1.0)
+      .from(image4.firstElementChild, 3, { scale: 1.5, ease: Power3.easeOut }, 1.3);
 
     //Content Animation
     tl.staggerFrom(
@@ -50,13 +54,13 @@ function Landing() {
       {
         y: 44,
         ease: Power3.easeOut,
-        delay: 0.85,
+        delay: 0.35,
       },
-      1.25,
+      0.5,
       "Start"
     )
-      .from(contentP, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 4.6)
-      .from(contentButton, 1, { y: 20, opacity: 0, ease: Power3.easeOut }, 5.2);
+      .from(contentP, 1, { y: -80, opacity: 0, ease: Power3.easeOut }, 2.0)
+      .from(contentButton, 1, { y: 80, opacity: 0, ease: Power3.easeOut }, 2.15);
   });
 
   return (
@@ -99,6 +103,9 @@ function Landing() {
               </div>
               <div className="hero-image place3">
                 <img src={img3} alt="pic3" />
+              </div>
+              <div className="hero-image place4">
+                <img src={img4} alt="pic4" />
               </div>
             </div>
           </div>

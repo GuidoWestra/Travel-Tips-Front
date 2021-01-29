@@ -42,7 +42,11 @@ export default function Tip({ data, placeId }) {
             <div class="p-4 bg-light rounded shadow-sm mb-3">
               <Row>
                 {location.pathname !== "/Account" ? (
-                  <Col>
+                  <Col
+                    style={{
+                      margin: "auto 0px auto 50px",
+                    }}
+                  >
                     <img
                       style={{
                         width: "100px",
@@ -55,9 +59,17 @@ export default function Tip({ data, placeId }) {
                   </Col>
                 ) : null}
                 <Col>
-                  <h6 class="mb-3">{line}</h6>{" "}
-                  <p class="font-italic mb-0">{c.text}</p>
-                  <ul class="list-inline small text-muted mt-3 mb-0">
+                  <div class=" mt-3 mb-0">
+                    <h6 class="font-weight-bold text-uppercase">{line}</h6>{" "}
+                    <p class="font-weight-light">{c.text}</p>
+                  </div>
+                </Col>
+                <Col
+                  style={{
+                    margin: "auto 0px auto 50px",
+                  }}
+                >
+                  <ul class="list-inline small text-muted">
                     <li class="list-inline-item">
                       <i class="fa fa-heart-o mr-2"></i>{" "}
                       <span
@@ -84,8 +96,12 @@ export default function Tip({ data, placeId }) {
                           }
                         }}
                       >
-                        {!user.id || user.id === c.userId ? (
-                          <div>{likeNum.length} Likes</div>
+                        {!user.id || location.pathname === "/Account" ? (
+                          likeNum.length === 1 ? (
+                            <div>{likeNum.length} Like</div>
+                          ) : (
+                            <div>{likeNum.length} Likes</div>
+                          )
                         ) : likes.find((like) => {
                             return like.tipId === c.id &&
                               like.userId === parseInt(user.id)
@@ -96,7 +112,7 @@ export default function Tip({ data, placeId }) {
                             <img
                               alt="like"
                               src="https://img.icons8.com/metro/26/000000/filled-like.png"
-                            />
+                            />{" "}
                             {likeNum.length}
                           </div>
                         ) : (
@@ -104,7 +120,7 @@ export default function Tip({ data, placeId }) {
                             <img
                               alt="like"
                               src="https://img.icons8.com/material-outlined/24/000000/filled-like.png"
-                            />
+                            />{" "}
                             {likeNum.length}
                           </div>
                         )}
@@ -112,18 +128,21 @@ export default function Tip({ data, placeId }) {
                     </li>
                   </ul>{" "}
                 </Col>
+                {location.pathname === "/Account" ? (
+                  <Button
+                    variant="danger"
+                    style={{
+                      margin: "auto 20px",
+                      height: "50px",
+                    }}
+                    onClick={() => {
+                      dispatch(deleteTip(c.id, c.placeId));
+                    }}
+                  >
+                    delete tip
+                  </Button>
+                ) : null}
               </Row>
-              {location.pathname === "/Account" ? (
-                <Button
-                  variant="danger"
-                  style={{ margin: "20px" }}
-                  onClick={() => {
-                    dispatch(deleteTip(c.id, c.placeId));
-                  }}
-                >
-                  delete tip
-                </Button>
-              ) : null}
             </div>
           </div>
         );
