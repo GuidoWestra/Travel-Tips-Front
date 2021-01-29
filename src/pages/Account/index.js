@@ -92,7 +92,7 @@ export default function Account() {
           </div>
         </div>
         <div className="py-4">
-          <h5 className="mb-3">Recent Tips</h5>
+          <h4 className="mb-3">Recent Tips</h4>
           <Tip data={tips} />
         </div>
       </div>
