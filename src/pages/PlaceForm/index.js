@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { CLOUDINARY_URL } from "../../config/constants";
@@ -14,6 +14,8 @@ export default function PlaceForm() {
   const [fileInput, setFileInput] = useState("");
   const [preview, setPreview] = useState("");
   const [photoLink, setPhotoLink] = useState("");
+  const [uploadLoading, setUploadLoading] = useState("");
+
   const token = useSelector(selectToken);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -53,6 +55,7 @@ export default function PlaceForm() {
   function submitImage(event) {
     event.preventDefault();
     uploadImage(fileInput);
+    setUploadLoading("Loading...");
   }
 
   function submitPlace(event) {
@@ -118,20 +121,30 @@ export default function PlaceForm() {
         </Form.Group>
         <div>{preview && <img src={preview} alt="chosen" style={{ height: "300px" }}></img>}</div>
         <br />
-        {preview ? (
-          <Button variant="dark" type="submit" onClick={submitImage}>
-            Choose this picture
-          </Button>
-        ) : null}
 
-        <Button
-          onClick={submitPlace}
-          style={{ width: "100%", marginTop: 5 }}
-          variant="dark"
-          type="submit"
-        >
-          Submit
-        </Button>
+        {preview && !photoLink ? (
+          <>
+            {uploadLoading ? (
+              <Spinner animation="border" variant="dark" />
+            ) : (
+              <>
+                <Button variant="dark" type="submit" onClick={submitImage}>
+                  Choose photo
+                </Button>
+              </>
+            )}
+          </>
+        ) : null}
+        {preview && !photoLink ? null : (
+          <Button
+            onClick={submitPlace}
+            style={{ width: "100%", marginTop: 5 }}
+            variant="dark"
+            type="submit"
+          >
+            Submit
+          </Button>
+        )}
       </Form>
     </div>
   );
