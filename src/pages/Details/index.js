@@ -7,11 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectTipsForPlace } from "../../store/tips/selectors";
 import { useParams } from "react-router-dom";
 import DetailsCard from "../../components/DetailsCard";
-import { Container } from "react-bootstrap";
+
 import { selectToken } from "../../store/user/selectors";
 import { selectPlace } from "../../store/places/selectors";
 import { Link } from "react-router-dom";
 import { fetchSinglePlace } from "../../store/places/actions";
+import "./index.css";
 
 export default function Details() {
   const place = useParams();
@@ -32,7 +33,11 @@ export default function Details() {
   }, [dispatch, placeId]);
   return (
     <>
-      <Container style={{ marginTop: "32px", padding: "64px" }}>
+      <div
+        style={{
+          margin: "3% 5% 5% 5%",
+        }}
+      >
         <DetailsCard data={placeData} />
         <div className="bg-light p-4 d-flex justify-content-end text-center">
           <ul className="list-inline mb-0">
@@ -50,12 +55,14 @@ export default function Details() {
         {token ? (
           <TipForm placeId={placeId} />
         ) : (
-          <p>
-            <Link to="/login">Log in</Link> to add a tip!
+          <p style={{ marginTop: "30px" }}>
+            <Link className="login-link" to="/login">
+              Log in to add a tip!
+            </Link>
           </p>
         )}
         <Tip data={sortedTips ? sortedTips : null} placeId={placeId} />
-      </Container>
+      </div>
     </>
   );
 }
