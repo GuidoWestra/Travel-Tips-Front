@@ -6,7 +6,8 @@ import { signUp } from "../../store/user/actions";
 import { selectToken } from "../../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
 import { CLOUDINARY_URL } from "../../config/constants";
 
 export default function SignUp() {
@@ -16,6 +17,8 @@ export default function SignUp() {
   const [fileInput, setFileInput] = useState("");
   const [preview, setPreview] = useState("");
   const [photoLink, setPhotoLink] = useState("");
+  const [uploadLoading, setUploadLoading] = useState("");
+
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -62,6 +65,7 @@ export default function SignUp() {
   function submitImage(event) {
     event.preventDefault();
     uploadImage(fileInput);
+    setUploadLoading("Loading...");
   }
 
   function submitForm(event) {
@@ -119,15 +123,14 @@ export default function SignUp() {
           />
         </Form.Group>
         <Row style={{ marginTop: "20px" }}>
-          <Col style={{ textAlign: "left" }}>
+          <Col style={{ textAlign: "left", marginLeft: "3.5vw" }}>
             <Form.Group>
               <Form.Label htmlFor="customFile">Upload Image</Form.Label>
 
               <input
                 style={{
                   backgroundColor: "white",
-                  marginLeft: "0",
-                  paddingLeft: "0",
+                  paddingLeft: "0.1vw",
                 }}
                 type="file"
                 id="customFile"
@@ -136,10 +139,19 @@ export default function SignUp() {
                 onChange={handleFileInputChange}
               />
             </Form.Group>
+
             {preview && !photoLink ? (
-              <button className="form-button-pic" type="submit" onClick={submitImage}>
-                Choose this picture
-              </button>
+              <>
+                {uploadLoading ? (
+                  <Spinner animation="border" variant="dark" />
+                ) : (
+                  <>
+                    <Button variant="dark" type="submit" onClick={submitImage}>
+                      Choose photo
+                    </Button>
+                  </>
+                )}
+              </>
             ) : null}
           </Col>
 
@@ -151,7 +163,8 @@ export default function SignUp() {
                   alt="chosen"
                   style={{
                     height: "200px",
-                    borderRadius: "9px",
+                    borderRadius: "5px",
+                    marginLeft: "6.0vw",
                     marginTop: "10px",
                     boxShadow: "1px 1px 5px 1px grey",
                   }}
@@ -160,10 +173,13 @@ export default function SignUp() {
             </div>
           </Col>
         </Row>{" "}
-      </Form>{" "}
-      <button className="form-button-s" type="submit" onClick={submitForm}>
-        Sign up
-      </button>
+      </Form>
+      {""}
+      {preview && !photoLink ? null : (
+        <button active={false} className="form-button-s" type="submit" onClick={submitForm}>
+          Sign up
+        </button>
+      )}
     </div>
   );
 }
