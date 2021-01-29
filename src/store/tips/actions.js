@@ -1,6 +1,5 @@
 import axios from "axios";
 import { selectPlace } from "../places/selectors";
-
 import { apiUrl } from "../../config/constants";
 import { selectToken } from "../user/selectors";
 import { showMessageWithTimeout } from "../appState/actions";
@@ -43,11 +42,7 @@ export const addTip = (placeId, text) => {
       console.log(e.message);
     }
     dispatch(
-      showMessageWithTimeout(
-        "success",
-        true,
-        `Your new tip has been added for ${placeName.name}!`
-      )
+      showMessageWithTimeout("success", true, `Your new tip has been added for ${placeName.name}!`)
     );
     dispatch(fetchTipsForPlace(placeId));
   };
