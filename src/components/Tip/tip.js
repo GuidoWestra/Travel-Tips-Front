@@ -7,6 +7,7 @@ import { fetchAllLikes, addLike, deleteLike } from "../../store/likes/actions";
 import { selectAllLikes } from "../../store/likes/selectors";
 import { selectUser } from "../../store/user/selectors";
 import { useLocation } from "react-router-dom";
+import "./tip.css";
 
 export default function Tip({ data, placeId }) {
   const dispatch = useDispatch();
@@ -110,6 +111,7 @@ export default function Tip({ data, placeId }) {
                           }) ? (
                           <div>
                             <img
+                              className="heart-like"
                               alt="like"
                               src="https://img.icons8.com/metro/26/000000/filled-like.png"
                             />{" "}
@@ -118,6 +120,7 @@ export default function Tip({ data, placeId }) {
                         ) : (
                           <div>
                             <img
+                              className="heart-like"
                               alt="like"
                               src="https://img.icons8.com/material-outlined/24/000000/filled-like.png"
                             />{" "}
