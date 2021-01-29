@@ -50,7 +50,10 @@ export const postPlace = (name, description, city, photoUrl) => {
     dispatch(appLoading());
     try {
       const token = selectToken(getState());
-
+      if (!photoUrl) {
+        photoUrl =
+          "http://res.cloudinary.com/dxtq8ajzg/image/upload/v1611926197/wwqkxbcddr49uoscvlu7.jpg";
+      }
       if (!token) return;
       const result = await Axios.post(
         `${apiUrl}/places`,
