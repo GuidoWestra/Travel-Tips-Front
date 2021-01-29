@@ -1,42 +1,29 @@
-# Frontend template
+# Travel.Tips
 
-This is a simple react/redux/jwt template to start a project quickly
+Welcome to Travel.Tips! <br />
+The site where you can read usefull short tips. <br />
+And if you have a tip feel free to make an account and post it. <br />
+Seen a tip that absolutely blew your mind. Why not give it a like? <br />
+By doing so, usefull tips stand out more! <br />
+Please follow the steps below and enjoy our app<br />
 
-## Table of contents:
+:wrench: Deployed: //netlify here <br />
+:paperclip: BackEnd: https://github.com/GuidoWestra/Travel-Tips-Back <br />
 
-- **[Setup](#setup-how-to-use-this-template)**
-- **[Create React App docs](#cra-docs)**
+# Instalation steps: <br />
+- clone the repo to your device using:  git clone <link> <your project name>  <br />
+- change directory to the cloned repo:  cd <your project name> <br />
+- install all dependencies using:       npm install<br />
+- start front-end:                      npm start<br />
 
-## SETUP How to use this template
+# Technologies used:
+<img align="left" alt="css logo" width="26px" src="https://cdn.iconscout.com/icon/free/png-512/css-118-569410.png"/>
+<img align="left" alt="js logo" width="26px" src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png"/>
+<img align="left" alt="react logo" width="26px" src="https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png"/>
+<img align="left" alt="redux logo" width="26px" src="https://cdn.iconscout.com/icon/free/png-512/redux-283024.png"/>
+<br />
 
-1. Create a new project based on this template using the `Use this template` button
-
-![HOW_TO_USE](https://user-images.githubusercontent.com/20372832/77003323-70966180-695d-11ea-8abe-b362d57135f3.gif)
-
-2. Clone the app
-
-```
-git clone git@github.com:YOUR_GITHUB_NAME/YOUR_PROJECT_NAME.git
-```
-
-3. cd into your project
-
-```
-cd YOUR_PROJECT_NAME
-```
-
-4. install dependencies
-
-```
-npm install
-```
-
-5. Start development server with npm start
-
-```
-npm start
-```
-
-## CRA docs
-
-The normal Create React App docs can be found in [CRA_DOCS.md](./CRA_DOCS.md)
+# This app was made by: 
+- Fabiana : https://github.com/fabianaColombo<br /> 
+- Tatiana : https://github.com/TatianaIvanovaW<br />
+- Guido   : https://github.com/GuidoWestra<br />

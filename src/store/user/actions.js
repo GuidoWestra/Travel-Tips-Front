@@ -5,35 +5,44 @@ import {
   appLoading,
   appDoneLoading,
   showMessageWithTimeout,
-  setMessage
+  setMessage,
 } from "../appState/actions";
 
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const TOKEN_STILL_VALID = "TOKEN_STILL_VALID";
 export const LOG_OUT = "LOG_OUT";
 
-const loginSuccess = userWithToken => {
+const loginSuccess = (userWithToken) => {
   return {
     type: LOGIN_SUCCESS,
-    payload: userWithToken
+    payload: userWithToken,
   };
 };
 
-const tokenStillValid = userWithoutToken => ({
+const tokenStillValid = (userWithoutToken) => ({
   type: TOKEN_STILL_VALID,
-  payload: userWithoutToken
+  payload: userWithoutToken,
 });
+
+const updateImageSuccess = (updatedUser) => {
+  return {
+    type: "USER_UPDATED",
+    payload: updatedUser,
+  };
+};
 
 export const logOut = () => ({ type: LOG_OUT });
 
-export const signUp = (name, email, password) => {
+export const signUp = (name, email, password, photoLink) => {
+  console.log("signup with photo", photoLink);
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
       const response = await axios.post(`${apiUrl}/signup`, {
         name,
         email,
-        password
+        password,
+        photo: photoLink,
       });
 
       dispatch(loginSuccess(response.data));
@@ -42,12 +51,35 @@ export const signUp = (name, email, password) => {
     } catch (error) {
       if (error.response) {
         console.log(error.response.data.message);
-        dispatch(setMessage("danger", true, error.response.data.message));
+        dispatch(setMessage("danger", true, "please fill all fields"));
       } else {
         console.log(error.message);
-        dispatch(setMessage("danger", true, error.message));
+        dispatch(setMessage("danger", true, "error.message"));
       }
       dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const updateUser = (photoLink) => {
+  console.log("im action update photo", photoLink);
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    try {
+      const response = await axios.put(
+        `${apiUrl}/updateUserImage`,
+        {
+          photo: photoLink,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(response.data);
+      dispatch(updateImageSuccess(response.data));
+    } catch (e) {
+      console.log(e);
+      dispatch(setMessage("success", true, "Profile Image updated"));
     }
   };
 };
@@ -58,7 +90,7 @@ export const login = (email, password) => {
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
-        password
+        password,
       });
 
       dispatch(loginSuccess(response.data));
@@ -85,17 +117,15 @@ export const getUserWithStoredToken = () => {
     // if we have no token, stop
     if (token === null) return;
 
-    dispatch(appLoading());
     try {
       // if we do have a token,
       // check wether it is still valid or if it is expired
       const response = await axios.get(`${apiUrl}/me`, {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       // token is still valid
       dispatch(tokenStillValid(response.data));
-      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
         console.log(error.response.message);
@@ -105,7 +135,6 @@ export const getUserWithStoredToken = () => {
       // if we get a 4xx or 5xx response,
       // get rid of the token by logging out
       dispatch(logOut());
-      dispatch(appDoneLoading());
     }
   };
 };

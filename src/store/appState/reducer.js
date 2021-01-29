@@ -1,16 +1,10 @@
-import {
-  APP_LOADING,
-  APP_DONE_LOADING,
-  SET_MESSAGE,
-  CLEAR_MESSAGE
-} from "./actions";
-
+import { APP_LOADING, APP_DONE_LOADING, SET_MESSAGE, CLEAR_MESSAGE } from "./actions";
 const initialState = {
   loading: false,
-  message: null
+  message: null,
 };
 
-export default (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case APP_LOADING:
       return { ...state, loading: true };
@@ -27,4 +21,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-};
+}

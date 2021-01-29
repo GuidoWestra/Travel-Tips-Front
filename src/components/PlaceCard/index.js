@@ -1,34 +1,48 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 export default function PlaceCard(props) {
-  console.log("I am props inside PlaceCard", props);
+  const history = useHistory();
+
+  function onClickHandler(city) {
+    history.push(`/details/${city.id}`);
+  }
   return (
     <div>
-      <Card
-        style={{
-          position: "absolute",
-          marginLeft: "30%",
-          width: "40%",
-          // top: "50%",
-          // transform: "translate(-50%, -50%)",
-        }}
-      >
-        <Card.Img
-          variant="top"
-          src="https://propertyeu.info/media/newsarticles/97/8a/ea/1a/978aea1a-fbd0-41fd-bf81-a46efa1820c5/images/amsterdam-itinerary-houses-canal-xlarge.jpg?w=690"
-        />
-        <Card.Body>
-          <Card.Title>Amsterdam!</Card.Title>
-          <Card.Text>
-            Amsterdam is one of the greatest small cities in the world. From Amsterdam canals to
-            world-famous Amsterdam museums and historical Amsterdam sights, it is one of the most
-            romantic and beautiful cities in Europe. Canal cruises are a popular way to see the city
-            from the perspective of its canals.
-          </Card.Text>
-          <Button variant="dark">Learn More!</Button>
-        </Card.Body>
-      </Card>
+      {props.data.map((city, i) => {
+        return (
+          <Card
+            key={i}
+            style={{
+              marginLeft: "30%",
+
+              marginTop: 20,
+            }}
+          >
+            <Card.Img variant="top" src={city.photo} />
+            <Card.Body>
+              <ListGroup className="list-group-flush">
+                <Card.Title style={{ paddingLeft: 18 }}>{city.name}</Card.Title>
+                <ListGroupItem>
+                  <Card.Text>{city.description}</Card.Text>
+                </ListGroupItem>
+                <p style={{ marginLeft: 18, marginTop: 8 }}>
+                  {new Date(city.createdAt).toISOString().split("T")[0]}
+                </p>
+                <br />
+                <Button
+                  style={{ marginLeft: 18 }}
+                  onClick={() => onClickHandler(city)}
+                  variant="dark"
+                >
+                  Learn More!
+                </Button>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        );
+      })}
     </div>
   );
 }

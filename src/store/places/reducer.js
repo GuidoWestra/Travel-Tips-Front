@@ -1,10 +1,15 @@
-const initialState = {};
+const initialState = {
+  places: null,
+  place: null,
+};
 
-export default (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case "":
-      return { ...state, ...action.payload };
+    case "places/fetched":
+      return { ...state, places: action.payload };
+    case "place/fetched":
+      return { ...state, place: action.payload };
     default:
       return state;
   }
-};
+}
