@@ -16,7 +16,12 @@ export default function Navigation() {
 
   return (
     <nav className="navigation">
-      <Navbar.Brand className="logof" as={NavLink} to="/">
+      <Navbar.Brand
+        style={{ width: "300px" }}
+        className="logof"
+        as={NavLink}
+        to="/"
+      >
         Travel.Tips
       </Navbar.Brand>
 
@@ -33,11 +38,6 @@ export default function Navigation() {
       ></input>
 
       <ul>
-        <li className="link">
-          <a className="somelink" href="/">
-            Landing
-          </a>
-        </li>
         <li className="link">
           <a
             style={{
