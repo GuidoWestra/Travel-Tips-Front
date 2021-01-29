@@ -50,10 +50,21 @@ export default function PlaceCard(props) {
                     </Button>
                   </ListGroup>
                 </Card.Body>
-              </Col>{" "}
-              <Col>
+              </Col>
+              <Col
+                style={{
+                  marginTop: "auto",
+                  marginBottom: "auto",
+                }}
+              >
                 <Card.Img
-                  style={{ width: "430px", alignSelf: "center" }}
+                  style={{
+                    width: "430px",
+
+                    alignSelf: "center",
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                  }}
                   src={city.photo}
                 />
               </Col>
