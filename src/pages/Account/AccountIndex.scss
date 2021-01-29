@@ -50,6 +50,10 @@
   transition: all 0.2s ease-in-out;
 }
 
+.avatar-edit:hover {
+  box-shadow: 1px 1px 1px 1px lightgrey;
+}
+
 body.modal-open .page-box {
   -webkit-filter: blur(4px);
   -moz-filter: blur(4px);
