@@ -10,8 +10,17 @@ export default function DetailsCard(props) {
     return (
       <div>
         <Card>
-          <Card.Img src={place.photo} />
-          <Card.Body>
+          <Card.Img
+            src={place.photo}
+            style={{
+              paddingBottom: "2%",
+            }}
+          />
+          <Card.Body
+            style={{
+              paddingBottom: "4%",
+            }}
+          >
             <Card.Title>{place.name}</Card.Title>
             <Card.Text>{place.description}</Card.Text>
           </Card.Body>

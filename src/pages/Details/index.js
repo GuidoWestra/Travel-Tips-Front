@@ -35,7 +35,7 @@ export default function Details() {
     <>
       <div
         style={{
-          margin: "3% 5% 5% 5%",
+          margin: "3% 20% 5% 20%",
         }}
       >
         <DetailsCard data={placeData} />
