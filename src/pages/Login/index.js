@@ -57,7 +57,7 @@ export default function SignUp() {
           <input
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            type="current-password"
+            type="password"
             placeholder="Password"
             autoComplete="current-password"
             required
